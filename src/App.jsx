@@ -663,7 +663,7 @@ const saturdayBlocks = [
         duration: 105,
         icon: '🏰',
         title: 'Bran Castle (Κάστρο Μπραν)',
-        description: 'Επίσκεψη στο κάστρο. Δεν βάζουμε γεύμα στο Bran.',
+        description: 'Επίσκεψη στο Κάστρο.',
         photo: OTHER_PHOTOS.bran,
       },
       {
