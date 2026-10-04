@@ -506,3 +506,111 @@ button { cursor: pointer; }
     gap: 4px;
   }
 }
+
+
+.landmark-thumb {
+  position: relative;
+  width: 112px;
+  height: 78px;
+  float: right;
+  margin: 0 0 10px 12px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 13px;
+  background: #e2e8f0;
+  box-shadow: 0 4px 12px rgba(15,23,42,.12);
+}
+
+.landmark-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.landmark-thumb span {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  padding: 3px 6px;
+  border-radius: 999px;
+  color: white;
+  background: rgba(15,23,42,.76);
+  font-size: .58rem;
+  font-weight: 900;
+}
+
+.photo-modal {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 14px;
+  background: rgba(2,6,23,.88);
+  backdrop-filter: blur(5px);
+}
+
+.photo-modal-card {
+  position: relative;
+  width: min(100%, 980px);
+  max-height: 94vh;
+  overflow: auto;
+  border-radius: 18px;
+  background: #0f172a;
+  box-shadow: 0 30px 80px rgba(0,0,0,.45);
+}
+
+.photo-modal-card > img {
+  width: 100%;
+  max-height: 80vh;
+  display: block;
+  object-fit: contain;
+  background: #020617;
+}
+
+.photo-close {
+  position: absolute;
+  z-index: 2;
+  top: 10px;
+  right: 10px;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 999px;
+  color: white;
+  background: rgba(15,23,42,.82);
+  font-size: 1.65rem;
+  line-height: 1;
+}
+
+.photo-caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  color: white;
+  font-size: .76rem;
+}
+
+.photo-caption a {
+  color: #bfdbfe;
+  text-decoration: none;
+  text-align: right;
+}
+
+@media (max-width: 520px) {
+  .landmark-thumb {
+    width: 96px;
+    height: 68px;
+  }
+
+  .photo-caption {
+    flex-direction: column;
+  }
+
+  .photo-caption a {
+    text-align: left;
+  }
+}
