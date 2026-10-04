@@ -1,0 +1,180 @@
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #0f172a;
+  background: #eef2f7;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top right, rgba(37, 99, 235, .16), transparent 32rem),
+    #eef2f7;
+}
+
+button { font: inherit; }
+
+.app-shell {
+  width: min(100%, 960px);
+  margin: 0 auto;
+  padding: 20px 16px 48px;
+}
+
+.hero {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px;
+  border-radius: 24px;
+  color: white;
+  background: linear-gradient(135deg, #0f172a, #1d4ed8);
+  box-shadow: 0 18px 50px rgba(15, 23, 42, .18);
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  opacity: .75;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(1.65rem, 5vw, 2.6rem);
+}
+
+.trip-dates {
+  margin: 6px 0 0;
+  color: #dbeafe;
+}
+
+.clock-card {
+  min-width: 132px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  text-align: right;
+  background: rgba(255,255,255,.12);
+  backdrop-filter: blur(8px);
+}
+
+.clock-card span {
+  display: block;
+  font-size: .72rem;
+  opacity: .75;
+}
+
+.clock-card strong {
+  display: block;
+  margin-top: 2px;
+  font-size: 1.25rem;
+  letter-spacing: .04em;
+}
+
+.day-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.day-tab {
+  border: 0;
+  border-radius: 16px;
+  padding: 12px 8px;
+  color: #475569;
+  background: white;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, .06);
+  cursor: pointer;
+}
+
+.day-tab span,
+.day-tab strong { display: block; }
+
+.day-tab span { font-size: .76rem; }
+.day-tab strong { margin-top: 2px; }
+
+.day-tab.active {
+  color: white;
+  background: #2563eb;
+}
+
+.day-heading { padding: 26px 4px 12px; }
+.day-heading p {
+  margin: 0 0 4px;
+  color: #64748b;
+  font-size: .88rem;
+}
+.day-heading h2 { margin: 0; font-size: 1.45rem; }
+
+.status-card {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid #bfdbfe;
+  border-radius: 18px;
+  background: #eff6ff;
+}
+
+.status-dot {
+  width: 11px;
+  height: 11px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 6px rgba(34, 197, 94, .12);
+}
+
+.status-card span,
+.status-card strong { display: block; }
+.status-card span {
+  color: #1d4ed8;
+  font-size: .76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.status-card strong { margin-top: 3px; font-size: .92rem; }
+
+.placeholder-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.placeholder-card {
+  min-height: 180px;
+  padding: 18px;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 6px 24px rgba(15, 23, 42, .06);
+}
+
+.placeholder-card > span { font-size: 1.5rem; }
+.placeholder-card h3 { margin: 16px 0 6px; }
+.placeholder-card p {
+  margin: 0;
+  color: #64748b;
+  line-height: 1.5;
+  font-size: .9rem;
+}
+
+@media (max-width: 700px) {
+  .hero { align-items: stretch; flex-direction: column; }
+  .clock-card { text-align: left; }
+  .placeholder-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 420px) {
+  .app-shell { padding-inline: 10px; }
+  .day-tabs { gap: 5px; }
+  .day-tab { padding-inline: 4px; border-radius: 13px; }
+}
