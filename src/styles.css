@@ -614,3 +614,26 @@ button { cursor: pointer; }
     text-align: left;
   }
 }
+
+
+.fx-rate span,
+.fx-rate strong {
+  display: block;
+}
+
+.fx-rate span {
+  font-size: .68rem;
+  opacity: .72;
+}
+
+.fx-rate strong {
+  margin-top: 2px;
+  font-size: 1rem;
+  letter-spacing: .01em;
+}
+
+.clock-divider {
+  height: 1px;
+  margin: 9px 0;
+  background: rgba(255,255,255,.18);
+}
