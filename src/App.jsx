@@ -929,22 +929,19 @@ function getCurrentIndex(schedule) {
 }
 
 function getAnchorInfo(block, state) {
-  const fixed = block.activities.find((item) => item.type === 'fixed')
+  const schedule = getSchedule(block, state)
+  const currentIndex = getCurrentIndex(schedule)
+  const fixed = schedule.find((item, index) => item.type === 'fixed' && !item.completedAt && index >= currentIndex)
   if (!fixed) return null
 
-  const schedule = getSchedule(block, state)
   const fixedIndex = schedule.findIndex((item) => item.id === fixed.id)
-  const before = schedule.slice(0, fixedIndex)
+  const before = schedule.slice(currentIndex, fixedIndex)
   const lastBefore = before[before.length - 1]
-  const projectedArrival = lastBefore?.completedAt || lastBefore?.estimatedEnd || new Date(block.plannedStart)
+  const projectedArrival = lastBefore?.completedAt || lastBefore?.estimatedEnd || new Date()
   const anchor = new Date(fixed.fixedStart)
   const diff = Math.round((anchor - projectedArrival) / 60000)
 
-  return {
-    anchor,
-    diff,
-    projectedArrival,
-  }
+  return { anchor, fixed, diff, projectedArrival }
 }
 
 function LiveBlock({ block, liveState, onStart, onEnd, onReset, onOpenPhoto }) {
@@ -986,10 +983,10 @@ function LiveBlock({ block, liveState, onStart, onEnd, onReset, onOpenPhoto }) {
 
       {anchorInfo && state.startedAt && (
         <div className={anchorInfo.diff < 45 ? 'anchor-warning danger' : 'anchor-warning'}>
-          <span>⚓ Σταθερό deadline</span>
-          <strong>Αγώνας 22:00</strong>
+          <span>⚓ Επόμενο σταθερό deadline</span>
+          <strong>{anchorInfo.fixed.title} · {fmtClock(anchorInfo.anchor)}</strong>
           <small>
-            Με το τωρινό πρόγραμμα προβλεπόμενη ολοκλήρωση πριν τον αγώνα: {fmtClock(anchorInfo.projectedArrival)}
+            Προβλεπόμενη ολοκλήρωση πριν το deadline: {fmtClock(anchorInfo.projectedArrival)}
             {' · '}
             {anchorInfo.diff >= 0 ? `περιθώριο ~${anchorInfo.diff}′` : `καθυστέρηση ~${Math.abs(anchorInfo.diff)}′`}
           </small>
@@ -1041,7 +1038,7 @@ function LiveBlock({ block, liveState, onStart, onEnd, onReset, onOpenPhoto }) {
                     {done
                       ? `END ${fmtClock(item.completedAt)}`
                       : item.type === 'fixed'
-                        ? '22:00'
+                        ? fmtClock(item.fixedStart)
                         : `${fmtClock(item.estimatedStart)} → ${fmtClock(item.estimatedEnd)}`}
                   </span>
                 </div>
