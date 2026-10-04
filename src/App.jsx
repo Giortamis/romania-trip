@@ -28,14 +28,6 @@ const thursdayBlocks = [
         mode: 'driving',
       },
       {
-        id: 'park-universitatii',
-        type: 'action',
-        duration: 10,
-        icon: '🅿️',
-        title: 'Parking & ετοιμασία',
-        description: 'Παρκάρουμε στο Interparking Piața Universității και ετοιμαζόμαστε για τη βόλτα.',
-      },
-      {
         id: 'morning-walk',
         type: 'action',
         duration: 120,
