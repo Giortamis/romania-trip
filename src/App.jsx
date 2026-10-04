@@ -28,14 +28,55 @@ const thursdayBlocks = [
         mode: 'driving',
       },
       {
-        id: 'morning-walk',
+        id: 'revolution-square',
         type: 'action',
-        duration: 120,
-        icon: '🚶',
-        title: 'Revolution Square → Calea Victoriei → Romanian Athenaeum',
-        description: 'Πλατεία Επανάστασης → Λεωφόρος της Νίκης → Ρουμανικό Αθηναίο / Μέγαρο Μουσικής.',
+        duration: 30,
+        icon: '📍',
+        title: 'Revolution Square (Πλατεία Επανάστασης)',
+        description: 'Πρώτη στάση της πρωινής βόλτας. Από εδώ συνεχίζουμε με τα πόδια προς Calea Victoriei.',
         destination: 'Revolution Square Bucharest',
         mode: 'walking',
+        photo: {
+          thumb: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Revolution%20Square%2C%20Bucharest%20-%20panoramio.jpg?width=480',
+          full: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Revolution%20Square%2C%20Bucharest%20-%20panoramio.jpg?width=1600',
+          alt: 'Revolution Square, Bucharest',
+          credit: 'Keith Ruffles · Wikimedia Commons · CC BY 3.0',
+          source: 'https://commons.wikimedia.org/wiki/File:Revolution_Square,_Bucharest_-_panoramio.jpg',
+        },
+      },
+      {
+        id: 'calea-victoriei',
+        type: 'action',
+        duration: 60,
+        icon: '🚶',
+        title: 'Calea Victoriei (Λεωφόρος της Νίκης)',
+        description: 'Περπάτημα στη Calea Victoriei. Η επόμενη πλοήγηση μας οδηγεί προς το Romanian Athenaeum.',
+        destination: 'Calea Victoriei Bucharest',
+        mode: 'walking',
+        photo: {
+          thumb: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Calea%20Victoriei%20%281%29.jpg?width=480',
+          full: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Calea%20Victoriei%20%281%29.jpg?width=1600',
+          alt: 'Calea Victoriei, Bucharest',
+          credit: 'Leontin l · Wikimedia Commons · CC BY-SA 4.0',
+          source: 'https://commons.wikimedia.org/wiki/File:Calea_Victoriei_(1).jpg',
+        },
+      },
+      {
+        id: 'romanian-athenaeum',
+        type: 'action',
+        duration: 30,
+        icon: '🏛️',
+        title: 'Romanian Athenaeum (Ρουμανικό Αθηναίο)',
+        description: 'Στάση στο Ateneul Român / Ρουμανικό Αθηναίο. Η φωτογραφία βοηθά να αναγνωρίσουμε αμέσως την πρόσοψη όταν φτάσουμε.',
+        destination: 'Romanian Athenaeum Bucharest',
+        mode: 'walking',
+        photo: {
+          thumb: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Romanian%20Athenaeum%20Ateneul%20Rom%C3%A2n%20%2852460204562%29.jpg?width=480',
+          full: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Romanian%20Athenaeum%20Ateneul%20Rom%C3%A2n%20%2852460204562%29.jpg?width=1600',
+          alt: 'Romanian Athenaeum, Bucharest',
+          credit: 'George M. Groutas · Wikimedia Commons · CC BY 2.0',
+          source: 'https://commons.wikimedia.org/wiki/File:Romanian_Athenaeum_Ateneul_Rom%C3%A2n_(52460204562).jpg',
+        },
       },
       {
         id: 'mici',
@@ -243,7 +284,7 @@ function getAnchorInfo(block, state) {
   }
 }
 
-function LiveBlock({ block, liveState, onStart, onEnd, onReset }) {
+function LiveBlock({ block, liveState, onStart, onEnd, onReset, onOpenPhoto }) {
   const state = getBlockState(liveState, block.id)
   const schedule = getSchedule(block, state)
   const currentIndex = getCurrentIndex(schedule)
@@ -312,6 +353,17 @@ function LiveBlock({ block, liveState, onStart, onEnd, onReset }) {
               <div className="activity-icon">{done ? '✓' : item.icon}</div>
 
               <div className="activity-main">
+                {item.photo && (
+                  <button
+                    className="landmark-thumb"
+                    onClick={() => onOpenPhoto(item.photo)}
+                    aria-label={`Μεγέθυνση φωτογραφίας: ${item.photo.alt}`}
+                  >
+                    <img src={item.photo.thumb} alt={item.photo.alt} loading="lazy" />
+                    <span>🔍 Μεγέθυνση</span>
+                  </button>
+                )}
+
                 <div className="activity-meta">
                   <span className={item.type === 'route' ? 'type route' : item.type === 'fixed' ? 'type fixed' : 'type'}>
                     {item.type === 'route' ? 'ΔΙΑΔΡΟΜΗ' : item.type === 'fixed' ? item.fixedLabel : 'ΔΡΑΣΗ'}
@@ -365,6 +417,7 @@ export default function App() {
   const [now, setNow] = useState(new Date())
   const [activeDay, setActiveDay] = useState('thu')
   const [liveState, setLiveState] = useState(() => loadState())
+  const [selectedPhoto, setSelectedPhoto] = useState(null)
 
   useEffect(() => {
     const timer = setInterval(() => setNow(new Date()), 1000)
@@ -467,6 +520,7 @@ export default function App() {
               onStart={startBlock}
               onEnd={endActivity}
               onReset={resetBlock}
+              onOpenPhoto={setSelectedPhoto}
             />
           ))}
 
@@ -484,6 +538,19 @@ export default function App() {
           <h3>{selected.title}</h3>
           <p>Μόλις κλειδώσουμε τη λειτουργία της Πέμπτης, εφαρμόζουμε ακριβώς τον ίδιο μηχανισμό και στις υπόλοιπες ημέρες.</p>
         </section>
+      )}
+
+      {selectedPhoto && (
+        <div className="photo-modal" role="dialog" aria-modal="true" aria-label={selectedPhoto.alt} onClick={() => setSelectedPhoto(null)}>
+          <div className="photo-modal-card" onClick={(event) => event.stopPropagation()}>
+            <button className="photo-close" onClick={() => setSelectedPhoto(null)} aria-label="Κλείσιμο">×</button>
+            <img src={selectedPhoto.full} alt={selectedPhoto.alt} />
+            <div className="photo-caption">
+              <strong>{selectedPhoto.alt}</strong>
+              <a href={selectedPhoto.source} target="_blank" rel="noreferrer">{selectedPhoto.credit}</a>
+            </div>
+          </div>
+        </div>
       )}
     </main>
   )
