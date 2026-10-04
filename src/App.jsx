@@ -660,7 +660,7 @@ const saturdayBlocks = [
       {
         id: 'sat-bran',
         type: 'action',
-        duration: 105,
+        duration: 75,
         icon: '🏰',
         title: 'Bran Castle (Κάστρο Μπραν)',
         description: 'Επίσκεψη στο Κάστρο.',
