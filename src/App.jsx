@@ -154,6 +154,8 @@ function fmtClock(value) {
     timeZone: 'Europe/Bucharest',
     hour: '2-digit',
     minute: '2-digit',
+    hourCycle: 'h23',
+    hour12: false,
   }).format(date)
 }
 
@@ -165,6 +167,8 @@ function fmtFull(value) {
     month: '2-digit',
     hour: '2-digit',
     minute: '2-digit',
+    hourCycle: 'h23',
+    hour12: false,
   }).format(date)
 }
 
@@ -173,6 +177,8 @@ function bucharestClock(date) {
     timeZone: 'Europe/Bucharest',
     hour: '2-digit',
     minute: '2-digit',
+    hourCycle: 'h23',
+    hour12: false,
     second: '2-digit',
   }).format(date)
 }
