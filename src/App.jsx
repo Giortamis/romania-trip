@@ -1208,71 +1208,36 @@ export default function App() {
         <h2>{selected.title}</h2>
       </section>
 
-      {activeDay === 'thu' ? (
-        <>
-          <section className="prestart-card">
-            <div>
-              <span>ΠΡΙΝ ΤΟ START</span>
-              <strong>09:20 άφιξη OTP → Green Motion → παραλαβή αυτοκινήτου</strong>
-              <p>Δεν μας νοιάζει αν εδώ υπάρξει καθυστέρηση. Το ζωντανό πρόγραμμα αρχίζει όταν πατήσουμε START μετά την παραλαβή.</p>
-            </div>
-          </section>
-
-          {thursdayBlocks.map((block) => (
-            <LiveBlock
-              key={block.id}
-              block={block}
-              liveState={liveState}
-              onStart={startBlock}
-              onEnd={endActivity}
-              onReset={resetBlock}
-              onOpenPhoto={setSelectedPhoto}
-            />
-          ))}
-
-          <section className="logic-card">
-            <strong>Πώς δουλεύει τώρα</strong>
-            <p>
-              START μόνο στην αρχή κάθε μπλοκ. Μετά πατάμε μόνο END. Η πραγματική ώρα END γίνεται αυτόματα η βάση
-              για την επόμενη δραστηριότητα, άρα οι επόμενες ώρες μετακινούνται χωρίς να πειράζεται το σταθερό 22:00 του αγώνα.
-            </p>
-          </section>
-        </>
-      ) : activeDay === 'sat' ? (
-        <section className="placeholder-card saturday-food-card">
-          <button
-            className="landmark-thumb"
-            onClick={() => setSelectedPhoto({
-              thumb: 'https://micoteca.ro/wp-content/uploads/2026/05/micoteca-herastrat-1.jpg',
-              full: 'https://micoteca.ro/wp-content/uploads/2026/05/micoteca-herastrat-1.jpg',
-              alt: 'Micoteca, Herăstrău',
-              credit: 'Micoteca · επίσημη ιστοσελίδα',
-              source: 'https://micoteca.ro/',
-            })}
-            aria-label="Μεγέθυνση φωτογραφίας Micoteca"
-          >
-            <img src="https://micoteca.ro/wp-content/uploads/2026/05/micoteca-herastrat-1.jpg" alt="Micoteca, Herăstrău" loading="lazy" />
-            <span>🔍 Μεγέθυνση</span>
-          </button>
-          <span>🍽️ ΚΛΕΙΔΩΜΕΝΟ ΦΑΓΗΤΟ</span>
-          <h3>Micoteca – Mici</h3>
-          <p>Το Σάββατο, μετά την επιστροφή στο Βουκουρέστι, κρατάμε τα mici στη Micoteca, Herăstrău. Θα ενσωματωθεί στο πλήρες live πρόγραμμα του Σαββάτου.</p>
-          <a
-            className="maps-button saturday-map"
-            href={mapUrl('Micoteca Herastrau Bucharest', 'driving')}
-            target="_blank"
-            rel="noreferrer"
-          >
-            📍 Google Maps
-          </a>
+      <>
+        <section className="prestart-card">
+          <div>
+            <span>ΠΡΙΝ ΤΟ START</span>
+            <strong>{prestartByDay[activeDay].title}</strong>
+            <p>{prestartByDay[activeDay].text}</p>
+          </div>
         </section>
-      ) : (
-        <section className="placeholder-card">
-          <span>🧭</span>
-          <h3>{selected.title}</h3>
-          <p>Μόλις κλειδώσουμε τη λειτουργία της Πέμπτης, εφαρμόζουμε ακριβώς τον ίδιο μηχανισμό και στις υπόλοιπες ημέρες.</p>
+
+        {(blocksByDay[activeDay] || []).map((block) => (
+          <LiveBlock
+            key={block.id}
+            block={block}
+            liveState={liveState}
+            onStart={startBlock}
+            onEnd={endActivity}
+            onReset={resetBlock}
+            onOpenPhoto={setSelectedPhoto}
+          />
+        ))}
+
+        <section className="logic-card">
+          <strong>Πώς δουλεύει</strong>
+          <p>
+            START μόνο στην αρχή κάθε μπλοκ. Μετά χρησιμοποιούμε END. Η πραγματική ώρα END γίνεται η βάση
+            για την επόμενη δραστηριότητα. Όπου η επόμενη στάση είναι αλλού, το END ανοίγει και Google Maps.
+            Τα σταθερά deadlines δεν μετακινούνται.
+          </p>
         </section>
-      )}
+      </>
 
       {selectedPhoto && (
         <div className="photo-modal" role="dialog" aria-modal="true" aria-label={selectedPhoto.alt} onClick={() => setSelectedPhoto(null)}>
@@ -1281,7 +1246,11 @@ export default function App() {
             <img src={selectedPhoto.full} alt={selectedPhoto.alt} />
             <div className="photo-caption">
               <strong>{selectedPhoto.alt}</strong>
-              <a href={selectedPhoto.source} target="_blank" rel="noreferrer">{selectedPhoto.credit}</a>
+              {selectedPhoto.source && selectedPhoto.source !== '#' ? (
+                <a href={selectedPhoto.source} target="_blank" rel="noreferrer">{selectedPhoto.credit}</a>
+              ) : (
+                <span>{selectedPhoto.credit}</span>
+              )}
             </div>
           </div>
         </div>
