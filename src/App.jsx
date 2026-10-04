@@ -750,8 +750,8 @@ const prestartByDay = {
     text: 'Το live πρόγραμμα αρχίζει μόνο όταν ολοκληρωθεί πραγματικά η παραλαβή του αυτοκινήτου.',
   },
   fri: {
-    title: 'Πρωινό / checkout Ralf Residence',
-    text: 'Πατάμε START όταν φύγουμε πραγματικά από το Ralf με το αυτοκίνητο.',
+    title: 'Πρωινό / checkout Ralf → Interparking Piața Universității',
+    text: 'Πατάμε START όταν φύγουμε πραγματικά από το Ralf. Πηγαίνουμε στο Interparking, παίρνουμε το αυτοκίνητο και η πρώτη οδική διαδρομή ξεκινά από εκεί.',
   },
   sat: {
     title: 'Checkout Heritage · βαλίτσες στο αυτοκίνητο',
@@ -862,17 +862,51 @@ function getCurrentIndex(schedule) {
 function getAnchorInfo(block, state) {
   const schedule = getSchedule(block, state)
   const currentIndex = getCurrentIndex(schedule)
-  const fixed = schedule.find((item, index) => item.type === 'fixed' && !item.completedAt && index >= currentIndex)
-  if (!fixed) return null
 
-  const fixedIndex = schedule.findIndex((item) => item.id === fixed.id)
-  const before = schedule.slice(currentIndex, fixedIndex)
+  const candidates = schedule
+    .map((item, index) => {
+      if (index < currentIndex || item.completedAt) return null
+      if (item.deadlineAt) {
+        return {
+          item,
+          index,
+          anchor: new Date(item.deadlineAt),
+          label: item.deadlineLabel || item.title,
+          deadlineOnItem: true,
+        }
+      }
+      if (item.type === 'fixed') {
+        return {
+          item,
+          index,
+          anchor: new Date(item.fixedStart),
+          label: item.title,
+          deadlineOnItem: false,
+        }
+      }
+      return null
+    })
+    .filter(Boolean)
+    .sort((a, b) => a.anchor - b.anchor)
+
+  const next = candidates[0]
+  if (!next) return null
+
+  const before = next.deadlineOnItem
+    ? schedule.slice(currentIndex, next.index + 1)
+    : schedule.slice(currentIndex, next.index)
+
   const lastBefore = before[before.length - 1]
   const projectedArrival = lastBefore?.completedAt || lastBefore?.estimatedEnd || new Date()
-  const anchor = new Date(fixed.fixedStart)
-  const diff = Math.round((anchor - projectedArrival) / 60000)
+  const diff = Math.round((next.anchor - projectedArrival) / 60000)
 
-  return { anchor, fixed, diff, projectedArrival }
+  return {
+    anchor: next.anchor,
+    fixed: next.item,
+    label: next.label,
+    diff,
+    projectedArrival,
+  }
 }
 
 function LiveBlock({ block, liveState, onStart, onEnd, onReset, onOpenPhoto }) {
@@ -915,7 +949,7 @@ function LiveBlock({ block, liveState, onStart, onEnd, onReset, onOpenPhoto }) {
       {anchorInfo && state.startedAt && (
         <div className={anchorInfo.diff < 45 ? 'anchor-warning danger' : 'anchor-warning'}>
           <span>⚓ Επόμενο σταθερό deadline</span>
-          <strong>{anchorInfo.fixed.title} · {fmtClock(anchorInfo.anchor)}</strong>
+          <strong>{anchorInfo.label} · {fmtClock(anchorInfo.anchor)}</strong>
           <small>
             Προβλεπόμενη ολοκλήρωση πριν το deadline: {fmtClock(anchorInfo.projectedArrival)}
             {' · '}
