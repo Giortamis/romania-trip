@@ -632,7 +632,7 @@ const fridayBlocks = [
         duration: 60,
         icon: '☕',
         title: 'Zoomserie Brașov – γλυκό + καφές (Ciocolover)',
-        description: 'Στάση για γλυκό στο Zoomserie Brașov, Strada Apollonia Hirscher 1. Επιλογή: Ciocolover – παντεσπάνι κακάο με πυκνή κρέμα μαύρης σοκολάτας.',
+        description: 'Στάση για γλυκό Ciocolover.',
         photo: OTHER_PHOTOS.coffee,
       },
       {
