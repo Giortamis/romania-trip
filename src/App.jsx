@@ -631,9 +631,15 @@ const fridayBlocks = [
         type: 'action',
         duration: 60,
         icon: '☕',
-        title: 'Zoomserie Brașov – γλυκό + καφές (Ciocolover)',
+        title: 'Zoomserie Brașov – γλυκό + καφές',
         description: 'Στάση για γλυκό Ciocolover.',
-        photo: OTHER_PHOTOS.coffee,
+        photo: {
+          thumb: 'https://cdn.cofetariazoomserie.ro/image/resizedwebp/catalog/orase/brasov-800x530.webp',
+          full: 'https://cdn.cofetariazoomserie.ro/image/resizedwebp/catalog/orase/brasov-800x530.webp',
+          alt: 'Zoomserie Brașov',
+          credit: 'Zoomserie · Brașov',
+          source: 'https://www.cofetariazoomserie.ro/locatii',
+        },
       },
       {
         id: 'fri-back-heritage',
