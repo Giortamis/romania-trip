@@ -631,8 +631,8 @@ const fridayBlocks = [
         type: 'action',
         duration: 60,
         icon: '☕',
-        title: 'Γλυκό + καφές σε εσωτερικό χώρο',
-        description: 'Επιλογή επιτόπου στην Παλιά Πόλη. Δεν κλειδώνουμε ακόμη συγκεκριμένο μαγαζί.',
+        title: 'Zoomserie Brașov – γλυκό + καφές (Ciocolover)',
+        description: 'Στάση για γλυκό στο Zoomserie Brașov, Strada Apollonia Hirscher 1. Επιλογή: Ciocolover – παντεσπάνι κακάο με πυκνή κρέμα μαύρης σοκολάτας.',
         photo: OTHER_PHOTOS.coffee,
       },
       {
