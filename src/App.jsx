@@ -106,8 +106,8 @@ const thursdayBlocks = [
         destination: 'Arcade Cafe Strada Smardan 30 Bucharest',
         mode: 'walking',
         photo: {
-          thumb: 'https://arcadecafe.ro/wp-content/uploads/2026/02/arcadecafe-2-1024x576.jpg',
-          full: 'https://arcadecafe.ro/wp-content/uploads/2026/02/arcadecafe-2-1024x576.jpg',
+          thumb: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/58/8e/9d/arcade-cafe.jpg?h=1200&s=1&w=1200',
+          full: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/58/8e/9d/arcade-cafe.jpg?h=1200&s=1&w=1200',
           alt: 'Arcade Cafe – Bucharest',
           credit: 'Arcade Cafe · επίσημη φωτογραφία',
           source: 'https://arcadecafe.ro/galerie-foto/',
@@ -510,8 +510,8 @@ const fridayBlocks = [
         title: 'Ograda Restaurant',
         description: '(Slow-Cooked Beef Cheeks ή Goulash with Beef Cheeks, Cooked in Cauldron)',
         photo: {
-          thumb: '/ograda.jpg',
-          full: '/ograda.jpg',
+          thumb: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/33/98/38/31/caption.jpg?h=1100&s=1&w=1100',
+          full: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/33/98/38/31/caption.jpg?h=1100&s=1&w=1100',
           alt: 'Ograda Restaurant – Brașov',
           credit: 'Ograda Restaurant',
           source: 'https://ograda.com/',
@@ -634,8 +634,8 @@ const fridayBlocks = [
         title: 'Zoomserie Brașov – γλυκό + καφές',
         description: 'Στάση για γλυκό Ciocolover.',
         photo: {
-          thumb: 'https://cdn.cofetariazoomserie.ro/image/resizedwebp/catalog/orase/brasov-800x530.webp',
-          full: 'https://cdn.cofetariazoomserie.ro/image/resizedwebp/catalog/orase/brasov-800x530.webp',
+          thumb: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/bd/1a/08/zoomserie-brasov.jpg?h=1200&s=1&w=1200',
+          full: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/bd/1a/08/zoomserie-brasov.jpg?h=1200&s=1&w=1200',
           alt: 'Zoomserie Brașov',
           credit: 'Zoomserie · Brașov',
           source: 'https://www.cofetariazoomserie.ro/locatii',
