@@ -132,7 +132,8 @@ const thursdayBlocks = [
         title: 'Ralf Residence',
         description: 'Ξεκούραση.',
         fixedStart: '2026-11-05T14:00:00+02:00',
-        fixedLabel: '14:00–16:00',
+        fixedLabel: 'REST',
+        timeLabel: '14:00–16:00',
         photo: {
           thumb: RALF_PHOTO,
           full: RALF_PHOTO,
@@ -1052,7 +1053,7 @@ function LiveBlock({ block, liveState, onStart, onEnd, onReset, onOpenPhoto }) {
                     {done
                       ? `END ${fmtClock(item.completedAt)}`
                       : item.type === 'fixed'
-                        ? fmtClock(item.fixedStart)
+                        ? (item.timeLabel || fmtClock(item.fixedStart))
                         : `${fmtClock(item.estimatedStart)} → ${fmtClock(item.estimatedEnd)}`}
                   </span>
                 </div>
