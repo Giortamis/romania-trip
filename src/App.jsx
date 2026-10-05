@@ -372,11 +372,11 @@ const OTHER_PHOTOS = {
     source: '#',
   },
   heritage: {
-    thumb: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.booking.com%2Fhotel%2Fro%2Foldtown-1735-brasov.html?w=520',
-    full: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.booking.com%2Fhotel%2Fro%2Foldtown-1735-brasov.html?w=1400',
+    thumb: 'https://images.squarespace-cdn.com/content/v1/5ae1a85b5ffd205aac4dc3d3/1524833685699-FLW7J972CVAIWFM6L0DU/cladire%2Bresidence%2Bhirscher.jpg',
+    full: 'https://images.squarespace-cdn.com/content/v1/5ae1a85b5ffd205aac4dc3d3/1524833685699-FLW7J972CVAIWFM6L0DU/cladire%2Bresidence%2Bhirscher.jpg',
     alt: 'Heritage Loft 1735, Brașov',
-    credit: 'Booking.com · σελίδα καταλύματος',
-    source: 'https://www.booking.com/hotel/ro/oldtown-1735-brasov.html',
+    credit: 'Residence Hirscher · φωτογραφία κτιρίου',
+    source: 'https://gabriel-mitache-br5w.squarespace.com/',
   },
   libearty: {
     thumb: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fmillionsoffriends.org%2Flibearty%2Fviziteaza-sanctuarul%2F?w=520',
