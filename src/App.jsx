@@ -497,7 +497,7 @@ const fridayBlocks = [
         duration: 60,
         icon: '🚗',
         title: 'Cantacuzino Castle → La Ceaun',
-        description: 'Κατευθείαν για La Ceaun – Piața Sfatului στο Brașov. Χωρίς στάση στο Canta Cuisine.',
+        description: 'Κατευθείαν για La Ceaun – Piața Sfatului στο Brașov.',
         destination: 'La Ceaun Piata Sfatului Brasov',
         mode: 'driving',
         photo: GOOGLE_MAPS_PHOTO,
