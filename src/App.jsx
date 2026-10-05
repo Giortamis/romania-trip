@@ -106,11 +106,11 @@ const thursdayBlocks = [
         destination: 'Arcade Cafe Strada Smardan 30 Bucharest',
         mode: 'walking',
         photo: {
-          thumb: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Farcadecafe.ro%2F?w=700',
-          full: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Farcadecafe.ro%2F?w=1400',
-          alt: 'Arcade Cafe – επίσημη ιστοσελίδα',
-          credit: 'Arcade Cafe · snapshot επίσημης ιστοσελίδας',
-          source: 'https://arcadecafe.ro/',
+          thumb: 'https://arcadecafe.ro/wp-content/uploads/2026/02/arcadecafe-2-1024x576.jpg',
+          full: 'https://arcadecafe.ro/wp-content/uploads/2026/02/arcadecafe-2-1024x576.jpg',
+          alt: 'Arcade Cafe – Bucharest',
+          credit: 'Arcade Cafe · επίσημη φωτογραφία',
+          source: 'https://arcadecafe.ro/galerie-foto/',
         },
       },
       {
