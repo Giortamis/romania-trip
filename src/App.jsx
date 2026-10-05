@@ -110,7 +110,7 @@ const thursdayBlocks = [
           full: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/58/8e/9d/arcade-cafe.jpg?h=1200&s=1&w=1200',
           alt: 'Arcade Cafe – Bucharest',
           credit: 'Arcade Cafe · επίσημη φωτογραφία',
-          source: 'https://arcadecafe.ro/galerie-foto/',
+          source: 'https://en.tripadvisor.com.hk/Restaurant_Review-g294458-d2161100-Reviews-Arcade_Cafe-Bucharest.html',
         },
       },
       {
@@ -400,11 +400,11 @@ const OTHER_PHOTOS = {
     source: 'https://millionsoffriends.org/libearty/viziteaza-sanctuarul/',
   },
   micoteca: {
-    thumb: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fmicoteca.ro%2F?w=520',
-    full: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fmicoteca.ro%2F?w=1400',
+    thumb: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/a7/56/c3/micoteca-mici-grill-mustard.jpg?h=500&s=1&w=900',
+    full: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/30/a7/56/c3/micoteca-mici-grill-mustard.jpg?h=1200&s=1&w=1200',
     alt: 'Micoteca – Herăstrău',
-    credit: 'Micoteca · επίσημη ιστοσελίδα',
-    source: 'https://micoteca.ro/',
+    credit: 'Tripadvisor · Micoteca',
+    source: 'https://www.tripadvisor.com.gr/Restaurant_Review-g294458-d33285940-Reviews-Micoteca-Bucharest.html',
   },
   daResidence: {
     thumb: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.booking.com%2Fhotel%2Fro%2Fda-residence-otopeni1.en-gb.html?w=520',
@@ -514,7 +514,7 @@ const fridayBlocks = [
           full: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/33/98/38/31/caption.jpg?h=1100&s=1&w=1100',
           alt: 'Ograda Restaurant – Brașov',
           credit: 'Ograda Restaurant',
-          source: 'https://ograda.com/',
+          source: 'https://www.tripadvisor.com.gr/Restaurant_Review-g295394-d21225584-Reviews-Ograda-Brasov_Brasov_County_Central_Romania_Transylvania.html',
         },
       },
       {
@@ -634,11 +634,11 @@ const fridayBlocks = [
         title: 'Zoomserie Brașov – γλυκό + καφές',
         description: 'Στάση για γλυκό Ciocolover.',
         photo: {
-          thumb: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/bd/1a/08/zoomserie-brasov.jpg?h=1200&s=1&w=1200',
-          full: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/bd/1a/08/zoomserie-brasov.jpg?h=1200&s=1&w=1200',
+          thumb: 'https://photos.wikimapia.org/p/00/04/62/26/54_big.jpg',
+          full: 'https://photos.wikimapia.org/p/00/04/62/26/54_big.jpg',
           alt: 'Zoomserie Brașov',
           credit: 'Zoomserie · Brașov',
-          source: 'https://www.cofetariazoomserie.ro/locatii',
+          source: 'https://wikimapia.org/32271033/ro/ZoomSerie',
         },
       },
       {
