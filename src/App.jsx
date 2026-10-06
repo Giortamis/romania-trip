@@ -256,8 +256,7 @@ const thursdayBlocks = [
         title: 'Gioelia Cremeria',
         description: 'Στάση για gelato.',
         address: 'Strada Franceză 38–42, Bucharest',
-        destination: 'Gioelia Cremeria Strada Franceză 38–42, Bucharest',
-        mode: 'walking',
+        disableNavigation: true,
         photo: {
           thumb: `${import.meta.env.BASE_URL}images/GIOELIA.jpg`,
           full: `${import.meta.env.BASE_URL}images/GIOELIA.jpg`,
@@ -1075,6 +1074,7 @@ function LiveBlock({ block, liveState, onStart, onEnd, onReset, onOpenPhoto }) {
           const nextItem = schedule[index + 1]
           const nextNeedsNavigation = Boolean(
             current &&
+            !item.disableNavigation &&
             nextItem?.destination &&
             nextItem.destination !== item.destination
           )
