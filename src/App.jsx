@@ -170,6 +170,23 @@ const thursdayBlocks = [
         },
       },
       {
+        id: 'thu-gioelia',
+        type: 'action',
+        duration: 30,
+        icon: '🍨',
+        title: 'Gioelia Cremeria – Strada Franceza',
+        description: 'Στάση για gelato.',
+        destination: 'Gioelia Cremeria Strada Franceza 38 Bucharest',
+        mode: 'walking',
+        photo: {
+          thumb: 'https://gioelia.com/wp-content/uploads/shop/tienda-gioelia-cremeria.jpg',
+          full: 'https://gioelia.com/wp-content/uploads/shop/tienda-gioelia-cremeria.jpg',
+          alt: 'Gioelia Cremeria – Strada Franceza, Bucharest',
+          credit: 'Gioelia Cremeria · Strada Franceza',
+          source: 'https://gioelia.com/en/ice-cream-shop-in-strada-franceza-romania/',
+        },
+      },
+      {
         id: 'stavropoleos',
         type: 'action',
         duration: 30,
