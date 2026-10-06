@@ -520,8 +520,8 @@ const fridayBlocks = [
         title: 'Ograda Restaurant',
         description: '(Slow-Cooked Beef Cheeks ή Goulash with Beef Cheeks, Cooked in Cauldron)',
         photo: {
-          thumb: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/33/98/38/31/caption.jpg?h=1100&s=1&w=1100',
-          full: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/33/98/38/31/caption.jpg?h=1100&s=1&w=1100',
+          thumb: `${import.meta.env.BASE_URL}images/ograda.jpg`,
+          full: `${import.meta.env.BASE_URL}images/ograda.jpg`,
           alt: 'Ograda Restaurant – Brașov',
           credit: 'Ograda Restaurant',
           source: 'https://www.tripadvisor.com.gr/Restaurant_Review-g295394-d21225584-Reviews-Ograda-Brasov_Brasov_County_Central_Romania_Transylvania.html',
