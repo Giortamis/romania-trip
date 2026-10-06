@@ -307,8 +307,8 @@ const thursdayBlocks = [
         type: 'route',
         duration: 45,
         icon: '🅿️',
-        title: 'Γήπεδο → Interparking → Ralf Residence',
-        description: 'Μετά τον αγώνα οδηγούμε κατευθείαν στο Interparking Piața Universității. Παρκάρουμε και συνεχίζουμε με τα πόδια για το Ralf Residence.',
+        title: 'Γήπεδο → Interparking',
+        description: 'Μετά τον αγώνα οδηγούμε από το Stadionul Rapid-Giulești στο Interparking Piața Universității και παρκάρουμε.',
         destination: 'Interparking Piata Universitatii Bucharest',
         mode: 'driving',
         photo: {
@@ -317,6 +317,32 @@ const thursdayBlocks = [
           alt: 'Είσοδος Interparking Piața Universității',
           credit: 'Google Maps εικόνα που επέλεξες',
           source: '#',
+        },
+      },
+      {
+        id: 'thu-interparking-ralf',
+        type: 'route',
+        duration: 15,
+        icon: '🚶',
+        title: 'Interparking → Ralf Residence',
+        description: 'Με τα πόδια από το Interparking Piața Universității προς το Ralf Residence, Strada Academiei 1A.',
+        destination: 'Ralf Residence Strada Academiei 1A Bucharest',
+        mode: 'walking',
+        photo: GOOGLE_MAPS_PHOTO,
+      },
+      {
+        id: 'thu-ralf-night-rest',
+        type: 'rest',
+        duration: 450,
+        icon: '🛏️',
+        title: 'Ralf Residence',
+        description: 'Ξεκούραση μετά την επιστροφή.',
+        photo: {
+          thumb: RALF_PHOTO,
+          full: RALF_PHOTO,
+          alt: 'Ralf Residence – πρόσοψη κτιρίου',
+          credit: 'Φωτογραφία από την επιβεβαίωση κράτησης',
+          source: 'https://www.booking.com/hotel/ro/ralf-residence-bucuresti1.html',
         },
       },
     ],
@@ -1069,7 +1095,7 @@ function LiveBlock({ block, liveState, onStart, onEnd, onReset, onOpenPhoto }) {
 
                 <div className="activity-meta">
                   <span className={item.type === 'route' ? 'type route' : item.type === 'fixed' ? 'type fixed' : 'type'}>
-                    {item.type === 'route' ? 'ΔΙΑΔΡΟΜΗ' : item.type === 'fixed' ? item.fixedLabel : 'ΔΡΑΣΗ'}
+                    {item.type === 'route' ? 'ΔΙΑΔΡΟΜΗ' : item.type === 'rest' ? 'REST' : item.type === 'fixed' ? item.fixedLabel : 'ΔΡΑΣΗ'}
                   </span>
                   <span>
                     {done
