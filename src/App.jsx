@@ -109,6 +109,7 @@ const thursdayBlocks = [
       },
       {
         id: 'arcade-schnitzel-food',
+        typeLabel: 'ΓΕΥΜΑ',
         type: 'action',
         duration: 45,
         icon: '🍽️',
@@ -128,8 +129,8 @@ const thursdayBlocks = [
         type: 'route',
         duration: 15,
         icon: '🏨',
-        title: 'Arcade Cafe → Ralf Residence (με τα πόδια)',
-        description: 'Πηγαίνουμε στο Ralf Residence, Strada Academiei 1A. Επίσημο check-in από 15:00.',
+        title: 'Arcade Cafe → Ralf Residence',
+        description: 'Πηγαίνουμε με τα πόδια στο Ralf Residence, Strada Academiei 1A. Επίσημο check-in από 15:00.',
         destination: 'Ralf Residence Strada Academiei 1A Bucharest',
         mode: 'walking',
         photo: GOOGLE_MAPS_PHOTO,
@@ -260,6 +261,7 @@ const thursdayBlocks = [
       },
       {
         id: 'thu-gioelia-stop',
+        typeLabel: 'ΓΕΥΜΑ',
         type: 'action',
         duration: 30,
         icon: '🍨',
@@ -356,7 +358,7 @@ const thursdayBlocks = [
         duration: 450,
         icon: '🛏️',
         title: 'Ralf Residence',
-        description: 'Ξεκούραση μετά την επιστροφή.',
+        description: 'Ξεκούραση.',
         photo: {
           thumb: RALF_PHOTO,
           full: RALF_PHOTO,
@@ -553,13 +555,14 @@ const fridayBlocks = [
         duration: 60,
         icon: '🚗',
         title: 'Cantacuzino Castle → Ograda',
-        description: 'Κατευθείαν για Ograda – Piața Sfatului στο Brașov.',
+        description: 'Οδήγηση για Ograda – Piața Sfatului στο Brașov.',
         destination: 'Ograda Piata Sfatului 14 Brasov',
         mode: 'driving',
         photo: GOOGLE_MAPS_PHOTO,
       },
       {
         id: 'fri-la-ceaun',
+        typeLabel: 'ΓΕΥΜΑ',
         type: 'action',
         duration: 45,
         icon: '🍲',
@@ -586,13 +589,14 @@ const fridayBlocks = [
       },
       {
         id: 'fri-heritage-checkin-rest',
+        timeLabel: '14:00–16:00',
         type: 'fixed',
         duration: 120,
         icon: '🛏️',
-        title: 'Heritage Loft 1735 / check-in',
-        description: 'Επίσημο check-in: 14:00–22:00. 14:00–16:00 για ξεκούραση.',
+        title: 'Heritage Loft 1735',
+        description: 'check-in / Ξεκούραση .',
         fixedStart: '2026-11-06T14:00:00+02:00',
-        fixedLabel: '14:00–16:00',
+        fixedLabel: 'REST',
         photo: OTHER_PHOTOS.heritage,
       },
 
@@ -710,13 +714,14 @@ const fridayBlocks = [
       },
       {
         id: 'fri-heritage-night',
+        timeLabel: '20:00–08:30',
         type: 'fixed',
         duration: 720,
         icon: '🛏️',
         title: 'Heritage Loft 1735',
-        description: 'Ξεκούραση.',
+        description: 'Ξεκούραση .',
         fixedStart: '2026-11-06T20:00:00+02:00',
-        fixedLabel: '20:00–πρωί',
+        fixedLabel: 'REST',
         photo: OTHER_PHOTOS.heritage,
       },
 
@@ -805,13 +810,14 @@ const saturdayBlocks = [
       },
       {
         id: 'sat-da-residence-night',
+        timeLabel: '19:00–07:00',
         type: 'fixed',
         duration: 720,
         icon: '🛏️',
         title: 'DA Residence',
-        description: 'Ξεκούραση.',
+        description: 'Ξεκούραση .',
         fixedStart: '2026-11-07T19:00:00+02:00',
-        fixedLabel: '19:00–πρωί',
+        fixedLabel: 'REST',
         photo: OTHER_PHOTOS.daResidence,
       },
 
@@ -1116,7 +1122,7 @@ function LiveBlock({ block, liveState, onStart, onEnd, onReset, onOpenPhoto }) {
 
                 <div className="activity-meta">
                   <span className={item.type === 'route' ? 'type route' : item.type === 'fixed' ? 'type fixed' : 'type'}>
-                    {item.type === 'route' ? 'ΔΙΑΔΡΟΜΗ' : item.type === 'rest' ? 'REST' : item.type === 'fixed' ? item.fixedLabel : 'ΔΡΑΣΗ'}
+                    {item.typeLabel || (item.type === 'route' ? 'ΔΙΑΔΡΟΜΗ' : item.type === 'rest' ? 'REST' : item.type === 'fixed' ? item.fixedLabel : 'ΔΡΑΣΗ')}
                   </span>
                   <span>
                     {done
