@@ -106,8 +106,8 @@ const thursdayBlocks = [
         destination: 'Arcade Cafe Strada Smardan 30 Bucharest',
         mode: 'walking',
         photo: {
-          thumb: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/58/8e/9d/arcade-cafe.jpg?h=1200&s=1&w=1200',
-          full: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/58/8e/9d/arcade-cafe.jpg?h=1200&s=1&w=1200',
+          thumb: `${import.meta.env.BASE_URL}images/arcade-cafe.png`,
+          full: `${import.meta.env.BASE_URL}images/arcade-cafe.png`,
           alt: 'Arcade Cafe – Bucharest',
           credit: 'Arcade Cafe · επίσημη φωτογραφία',
           source: 'https://en.tripadvisor.com.hk/Restaurant_Review-g294458-d2161100-Reviews-Arcade_Cafe-Bucharest.html',
