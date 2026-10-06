@@ -176,13 +176,14 @@ const thursdayBlocks = [
         icon: '🍨',
         title: 'Gioelia Cremeria – Strada Franceza',
         description: 'Στάση για gelato.',
-        destination: 'Gioelia Cremeria Strada Franceza 38 Bucharest',
+        address: 'Strada Franceză 38–42, Bucharest',
+        destination: 'Gioelia Cremeria Strada Franceză 38–42, Bucharest',
         mode: 'walking',
         photo: {
-          thumb: 'https://gioelia.com/wp-content/uploads/shop/tienda-gioelia-cremeria.jpg',
-          full: 'https://gioelia.com/wp-content/uploads/shop/tienda-gioelia-cremeria.jpg',
+          thumb: `${import.meta.env.BASE_URL}images/GIOELIA.jpg`,
+          full: `${import.meta.env.BASE_URL}images/GIOELIA.jpg`,
           alt: 'Gioelia Cremeria – Strada Franceza, Bucharest',
-          credit: 'Gioelia Cremeria · Strada Franceza',
+          credit: 'Φωτογραφία που επέλεξες',
           source: 'https://gioelia.com/en/ice-cream-shop-in-strada-franceza-romania/',
         },
       },
@@ -1089,6 +1090,7 @@ function LiveBlock({ block, liveState, onStart, onEnd, onReset, onOpenPhoto }) {
 
                 <h4>{item.title}</h4>
                 <p>{item.description}</p>
+                {item.address && <p>{item.address}</p>}
 
                 <div className="activity-actions">
                   {item.destination && (
