@@ -15,7 +15,7 @@ const PARKING_FULL = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0
 
 const days = [
   { id: 'thu', short: 'Πέμ', date: '05/11', title: 'Πέμπτη 5 Νοεμβρίου', city: 'Βουκουρέστι' },
-  { id: 'fri', short: 'Παρ', date: '06/11', title: 'Παρασκευή 6 Νοεμβρίου', city: 'Sinaia · Bușteni · Brașov' },
+  { id: 'fri', short: 'Παρ', date: '06/11', title: 'Παρασκευή 6 Νοεμβρίου', city: 'Sinaia · Brașov' },
   { id: 'sat', short: 'Σάβ', date: '07/11', title: 'Σάββατο 7 Νοεμβρίου', city: 'Zărnești · Bran · Βουκουρέστι' },
   { id: 'sun', short: 'Κυρ', date: '08/11', title: 'Κυριακή 8 Νοεμβρίου', city: 'Otopeni · Επιστροφή' },
 ]
@@ -380,13 +380,6 @@ const OTHER_PHOTOS = {
     credit: 'Cristian Bortes · Wikimedia Commons · CC BY 2.0',
     source: 'https://commons.wikimedia.org/wiki/File:Pelisor_Castle,_Sinaia.jpg',
   },
-  cantacuzino: {
-    thumb: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Busteni%20-%20Cantacuzino%20Castle.jpg?width=480',
-    full: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Busteni%20-%20Cantacuzino%20Castle.jpg?width=1600',
-    alt: 'Cantacuzino Castle, Bușteni',
-    credit: 'Tiia Monto · Wikimedia Commons',
-    source: 'https://commons.wikimedia.org/wiki/File:Busteni_-_Cantacuzino_Castle.jpg',
-  },
   piataSfatului: {
     thumb: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Brasov%20piata%20sfatului.jpg?width=480',
     full: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Brasov%20piata%20sfatului.jpg?width=1600',
@@ -504,7 +497,7 @@ const OTHER_PHOTOS = {
 const fridayBlocks = [
   {
     id: 'fri-morning',
-    title: 'Μπλοκ 1 · Interparking → Sinaia → Bușteni → Brașov',
+    title: 'Μπλοκ 1 · Interparking → Sinaia → Brașov',
     startLabel: '🏨 ΦΕΥΓΟΥΜΕ ΑΠΟ ΤΟ RALF — START',
     plannedStart: '2026-11-06T08:30:00+02:00',
     startHint: 'Πατάμε START το πρωί όταν φύγουμε από το Ralf. Παίρνουμε το αυτοκίνητο από το Interparking και η πρώτη οδική διαδρομή ξεκινά από εκεί.',
@@ -530,33 +523,14 @@ const fridayBlocks = [
         photo: OTHER_PHOTOS.pelisor,
       },
       {
-        id: 'fri-pelisor-cantacuzino',
-        type: 'route',
-        duration: 30,
-        icon: '🚗',
-        title: 'Pelișor → Cantacuzino Castle',
-        description: 'Οδήγηση Sinaia → Bușteni με τελικο προορισμό το Cantacuzino Castle',
-        destination: 'Cantacuzino Castle Busteni Romania',
-        mode: 'driving',
-        photo: GOOGLE_MAPS_PHOTO,
-      },
-      {
-        id: 'fri-cantacuzino',
-        type: 'action',
-        duration: 60,
-        icon: '🏰',
-        title: 'Cantacuzino Castle (Κάστρο Καντακουζίνο)',
-        description: 'Αρχοντικό του 1911 σε νεορουμανικό ύφος, χτισμένο για τον πρίγκιπα Gheorghe Grigore Cantacuzino, με πανοραμική θέα στα όρη Bucegi.',
-        photo: OTHER_PHOTOS.cantacuzino,
-      },
-      {
-        id: 'fri-cantacuzino-la-ceaun',
+        id: 'fri-pelisor-ograda',
         type: 'route',
         duration: 60,
         icon: '🚗',
-        title: 'Cantacuzino Castle → Ograda',
-        description: 'Οδήγηση για Ograda – Piața Sfatului στο Brașov.',
-        destination: 'Ograda Piata Sfatului 14 Brasov',
+        title: 'Pelișor Castle → Ograda',
+        description: 'Οδήγηση από Sinaia προς Ograda – Piața Sfatului στο Brașov.',
+        origin: 'Pelișor Castle, Aleea Peleșului 2, Sinaia, Romania',
+        destination: 'Ograda, Piața Sfatului 14, Brașov',
         mode: 'driving',
         photo: GOOGLE_MAPS_PHOTO,
       },
@@ -938,8 +912,8 @@ function addMinutes(date, minutes) {
   return new Date(date.getTime() + minutes * 60000)
 }
 
-function mapUrl(query, mode = 'walking') {
-  return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(query)}&travelmode=${mode}`
+function mapUrl(query, mode = 'walking', origin = null) {
+  return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(query)}&travelmode=${mode}${origin ? `&origin=${encodeURIComponent(origin)}` : ''}`
 }
 
 function getBlockState(liveState, blockId) {
@@ -1141,7 +1115,7 @@ function LiveBlock({ block, liveState, onStart, onEnd, onReset, onOpenPhoto }) {
                   {item.destination && (
                     <a
                       className="maps-button"
-                      href={mapUrl(item.destination, item.mode)}
+                      href={mapUrl(item.destination, item.mode, item.origin)}
                       target="_blank"
                       rel="noreferrer"
                     >
