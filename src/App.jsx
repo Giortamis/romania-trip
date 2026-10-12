@@ -15,8 +15,8 @@ const PARKING_FULL = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA0
 
 const days = [
   { id: 'thu', short: 'Πέμ', date: '05/11', title: 'Πέμπτη 5 Νοεμβρίου', city: 'Βουκουρέστι' },
-  { id: 'fri', short: 'Παρ', date: '06/11', title: 'Παρασκευή 6 Νοεμβρίου', city: 'Sinaia · Brașov' },
-  { id: 'sat', short: 'Σάβ', date: '07/11', title: 'Σάββατο 7 Νοεμβρίου', city: 'Zărnești · Bran · Βουκουρέστι' },
+  { id: 'fri', short: 'Παρ', date: '06/11', title: 'Παρασκευή 6 Νοεμβρίου', city: 'Bran · Brașov' },
+  { id: 'sat', short: 'Σάβ', date: '07/11', title: 'Σάββατο 7 Νοεμβρίου', city: 'Zărnești · Βουκουρέστι' },
   { id: 'sun', short: 'Κυρ', date: '08/11', title: 'Κυριακή 8 Νοεμβρίου', city: 'Otopeni · Επιστροφή' },
 ]
 
@@ -373,13 +373,6 @@ const thursdayBlocks = [
 
 
 const OTHER_PHOTOS = {
-  pelisor: {
-    thumb: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Pelisor%20Castle%2C%20Sinaia.jpg?width=480',
-    full: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Pelisor%20Castle%2C%20Sinaia.jpg?width=1600',
-    alt: 'Pelișor Castle, Sinaia',
-    credit: 'Cristian Bortes · Wikimedia Commons · CC BY 2.0',
-    source: 'https://commons.wikimedia.org/wiki/File:Pelisor_Castle,_Sinaia.jpg',
-  },
   piataSfatului: {
     thumb: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Brasov%20piata%20sfatului.jpg?width=480',
     full: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Brasov%20piata%20sfatului.jpg?width=1600',
@@ -496,307 +489,379 @@ const OTHER_PHOTOS = {
 
 const fridayBlocks = [
   {
-    id: 'fri-morning',
-    title: 'Μπλοκ 1 · Interparking → Sinaia → Brașov',
-    startLabel: '🏨 ΦΕΥΓΟΥΜΕ ΑΠΟ ΤΟ RALF — START',
-    plannedStart: '2026-11-06T08:30:00+02:00',
-    startHint: 'Πατάμε START το πρωί όταν φύγουμε από το Ralf. Παίρνουμε το αυτοκίνητο από το Interparking και η πρώτη οδική διαδρομή ξεκινά από εκεί.',
+    id: "fri-morning-v2",
+    title: "Μπλοκ 1 · Ralf → Interparking → Bran → Brașov",
+    startLabel: "🏨 ΦΕΥΓΟΥΜΕ ΑΠΟ ΤΟ RALF — START",
+    plannedStart: "2026-11-06T08:30:00+02:00",
+    startHint: "Πατάμε START όταν φύγουμε από το Ralf. Πρώτα περπατάμε προς το Interparking και μετά οδηγούμε προς Bran.",
     activities: [
       {
-        id: 'fri-interparking-pelisor',
-        type: 'route',
+        id: "fri-ralf-interparking",
+        type: "route",
+        duration: 15,
+        icon: "🚶",
+        title: "Ralf Residence → Interparking Piața Universității",
+        description: "Με τα πόδια προς το Interparking Piața Universității για να πάρουμε το αυτοκίνητο.",
+        origin: "Ralf Residence, Strada Academiei 1A, București, Romania",
+        destination: "Interparking Piața Universității, Strada Toma Caragiu 1, București, Romania",
+        mode: "walking",
+        photo: GOOGLE_MAPS_PHOTO
+      },
+      {
+        id: "fri-interparking-bran",
+        type: "route",
         duration: 150,
-        icon: '🚗',
-        title: 'Interparking Piața Universității → Pelișor Castle',
-        description: 'Παίρνουμε το αυτοκίνητο από το Interparking Piața Universității και οδηγούμε προς Sinaia με τελικό προορισμό το Pelișor Castle (Κάστρο Πέλισορ).',
-        destination: 'Pelisor Castle Sinaia Romania',
-        mode: 'driving',
-        photo: GOOGLE_MAPS_PHOTO,
+        icon: "🚗",
+        title: "Interparking Piața Universității → Bran Castle",
+        description: "Οδήγηση από το Βουκουρέστι προς το Bran Castle.",
+        origin: "Interparking Piața Universității, Strada Toma Caragiu 1, București, Romania",
+        destination: "Bran Castle, Strada General Traian Moșoiu 24, 507025 Bran, Romania",
+        mode: "driving",
+        photo: GOOGLE_MAPS_PHOTO
       },
       {
-        id: 'fri-pelisor',
-        type: 'action',
+        id: "fri-bran",
+        type: "action",
         duration: 75,
-        icon: '🏰',
-        title: 'Pelișor Castle (Κάστρο Πέλισορ)',
-        description: 'Μικρότερο βασιλικό ανάκτορο του συγκροτήματος Peleș, χτισμένο το 1899–1902 για τον Φερδινάνδο και τη Μαρία, με έντονα στοιχεία Art Nouveau.',
-        photo: OTHER_PHOTOS.pelisor,
+        icon: "🏰",
+        title: "Bran Castle (Κάστρο Μπραν)",
+        description: "Μεσαιωνικό κάστρο του 14ου αιώνα σε στρατηγικό πέρασμα των Καρπαθίων, γνωστό παγκοσμίως για τη σύνδεσή του με τον θρύλο του Dracula.",
+        photo: OTHER_PHOTOS.bran
       },
       {
-        id: 'fri-pelisor-ograda',
-        type: 'route',
-        duration: 60,
-        icon: '🚗',
-        title: 'Pelișor Castle → Ograda',
-        description: 'Οδήγηση από Sinaia προς Ograda – Piața Sfatului στο Brașov.',
-        origin: 'Pelișor Castle, Aleea Peleșului 2, Sinaia, Romania',
-        destination: 'Ograda, Piața Sfatului 14, Brașov',
-        mode: 'driving',
-        photo: GOOGLE_MAPS_PHOTO,
-      },
-      {
-        id: 'fri-la-ceaun',
-        typeLabel: 'ΓΕΥΜΑ',
-        type: 'action',
+        id: "fri-bran-heritage",
+        type: "route",
         duration: 45,
-        icon: '🍲',
-        title: 'Ograda Restaurant',
-        description: '(Slow-Cooked Beef Cheeks ή Goulash with Beef Cheeks, Cooked in Cauldron)',
+        icon: "🚗",
+        title: "Bran Castle → Heritage Loft 1735",
+        description: "Οδήγηση από Bran προς Brașov και parking στο Heritage Loft 1735.",
+        origin: "Bran Castle, Strada General Traian Moșoiu 24, 507025 Bran, Romania",
+        destination: "Heritage Loft 1735, Strada Gheorghe Barițiu 26, Brașov, Romania",
+        mode: "driving",
+        photo: GOOGLE_MAPS_PHOTO
+      },
+      {
+        id: "fri-heritage-checkin-rest",
+        timeLabel: "14:00–15:30",
+        type: "fixed",
+        duration: 90,
+        icon: "🛏️",
+        title: "Heritage Loft 1735",
+        description: "check-in / Ξεκούραση.",
+        fixedStart: "2026-11-06T14:00:00+02:00",
+        fixedLabel: "REST",
+        photo: OTHER_PHOTOS.heritage,
+        disableNavigation: true
+      }
+    ]
+  },
+  {
+    id: "fri-afternoon-v2",
+    title: "Μπλοκ 2 · Brașov με τα πόδια",
+    startLabel: "🏨 ΦΕΥΓΟΥΜΕ ΑΠΟ ΤΟ HERITAGE — START",
+    plannedStart: "2026-11-06T15:30:00+02:00",
+    startHint: "Νέο START όταν φύγουμε από το Heritage. Από εδώ και μετά όλα γίνονται με τα πόδια.",
+    activities: [
+      {
+        id: "fri-heritage-ograda",
+        type: "route",
+        duration: 10,
+        icon: "🚶",
+        title: "Heritage Loft 1735 → Ograda",
+        description: "Με τα πόδια προς το Ograda στην Piața Sfatului.",
+        origin: "Heritage Loft 1735, Strada Gheorghe Barițiu 26, Brașov, Romania",
+        destination: "Ograda, Piața Sfatului 14, Brașov",
+        mode: "walking",
+        photo: GOOGLE_MAPS_PHOTO
+      },
+      {
+        id: "fri-la-ceaun",
+        typeLabel: "ΓΕΥΜΑ",
+        type: "action",
+        duration: 60,
+        icon: "🍲",
+        title: "Ograda Restaurant",
+        description: "(Slow-Cooked Beef Cheeks ή Goulash with Beef Cheeks, Cooked in Cauldron)",
         photo: {
           thumb: `${import.meta.env.BASE_URL}images/ograda.jpg`,
           full: `${import.meta.env.BASE_URL}images/ograda.jpg`,
-          alt: 'Ograda Restaurant – Brașov',
-          credit: 'Ograda Restaurant',
-          source: 'https://www.tripadvisor.com.gr/Restaurant_Review-g295394-d21225584-Reviews-Ograda-Brasov_Brasov_County_Central_Romania_Transylvania.html',
+          alt: "Ograda Restaurant – Brașov",
+          credit: "Ograda Restaurant",
+          source: "https://www.tripadvisor.com.gr/Restaurant_Review-g295394-d21225584-Reviews-Ograda-Brasov_Brasov_County_Central_Romania_Transylvania.html"
         },
+        disableNavigation: true
       },
       {
-        id: 'fri-to-heritage',
-        type: 'route',
-        duration: 15,
-        icon: '🏨',
-        title: 'Ograda → Heritage Loft 1735',
-        description: 'Str Gheorghe Bariţiu nr 26. Δωρεάν ιδιωτικό parking στο κατάλυμα.',
-        destination: 'Heritage Loft 1735 Brasov',
-        mode: 'driving',
-        photo: GOOGLE_MAPS_PHOTO,
+        id: "fri-ograda-square",
+        type: "route",
+        duration: 2,
+        icon: "🚶",
+        title: "Ograda → Piața Sfatului",
+        description: "Με τα πόδια στην Piața Sfatului, με χρόνο για έξοδο από το εστιατόριο.",
+        origin: "Ograda, Piața Sfatului 14, Brașov",
+        destination: "Piața Sfatului, Brașov, Romania",
+        mode: "walking",
+        photo: GOOGLE_MAPS_PHOTO
       },
       {
-        id: 'fri-heritage-checkin-rest',
-        timeLabel: '14:00–16:00',
-        type: 'fixed',
-        duration: 120,
-        icon: '🛏️',
-        title: 'Heritage Loft 1735',
-        description: 'check-in / Ξεκούραση .',
-        fixedStart: '2026-11-06T14:00:00+02:00',
-        fixedLabel: 'REST',
-        photo: OTHER_PHOTOS.heritage,
-      },
-
-    ],
-  },
-  {
-    id: 'fri-afternoon',
-    title: 'Μπλοκ 2 · Brașov με τα πόδια',
-    startLabel: '🏨 ΦΕΥΓΟΥΜΕ ΑΠΟ ΤΟ HERITAGE — START',
-    plannedStart: '2026-11-06T16:00:00+02:00',
-    startHint: 'Νέο START όταν φύγουμε από το Heritage. Από εδώ και μετά όλα γίνονται με τα πόδια.',
-    activities: [
-      {
-        id: 'fri-piata-sfatului',
-        type: 'action',
+        id: "fri-piata-sfatului",
+        type: "action",
         duration: 20,
-        icon: '📍',
-        title: 'Piața Sfatului (Πλατεία Συμβουλίου)',
-        description: 'Η ιστορική κεντρική πλατεία του Brașov, περιτριγυρισμένη από πολύχρωμα κτίρια και με το παλιό Δημαρχείο στο κέντρο.',
-        destination: 'Piata Sfatului Brasov Romania',
-        mode: 'walking',
-        photo: OTHER_PHOTOS.piataSfatului,
+        icon: "📍",
+        title: "Piața Sfatului (Πλατεία Συμβουλίου)",
+        description: "Η ιστορική κεντρική πλατεία του Brașov, περιτριγυρισμένη από πολύχρωμα κτίρια και με το παλιό Δημαρχείο στο κέντρο.",
+        destination: "Piața Sfatului, Brașov, Romania",
+        mode: "walking",
+        photo: OTHER_PHOTOS.piataSfatului
       },
       {
-        id: 'fri-black-church',
-        type: 'action',
+        id: "fri-square-church",
+        type: "route",
+        duration: 5,
+        icon: "🚶",
+        title: "Piața Sfatului → Black Church",
+        description: "Με τα πόδια προς το επόμενο σημείο.",
+        origin: "Piața Sfatului, Brașov, Romania",
+        destination: "Black Church, Curtea Johannes Honterus 2, Brașov",
+        mode: "walking",
+        photo: GOOGLE_MAPS_PHOTO
+      },
+      {
+        id: "fri-black-church",
+        type: "action",
         duration: 30,
-        icon: '⛪',
-        title: 'Biserica Neagră / Black Church (Μαύρη Εκκλησία)',
-        description: 'Η μεγαλύτερη γοτθική εκκλησία της Ρουμανίας, εμβληματικό μνημείο του Brașov, γνωστό για το επιβλητικό εσωτερικό και το μεγάλο εκκλησιαστικό όργανο.',
-        destination: 'Black Church Brasov Romania',
-        mode: 'walking',
-        photo: OTHER_PHOTOS.blackChurch,
+        icon: "⛪",
+        title: "Biserica Neagră / Black Church (Μαύρη Εκκλησία)",
+        description: "Η μεγαλύτερη γοτθική εκκλησία της Ρουμανίας, εμβληματικό μνημείο του Brașov, γνωστό για το επιβλητικό εσωτερικό και το μεγάλο εκκλησιαστικό όργανο.",
+        destination: "Black Church, Curtea Johannes Honterus 2, Brașov",
+        mode: "walking",
+        photo: OTHER_PHOTOS.blackChurch
       },
       {
-        id: 'fri-sforii',
-        type: 'action',
+        id: "fri-church-sforii",
+        type: "route",
+        duration: 5,
+        icon: "🚶",
+        title: "Black Church → Strada Sforii",
+        description: "Με τα πόδια προς το επόμενο σημείο.",
+        origin: "Black Church, Curtea Johannes Honterus 2, Brașov",
+        destination: "Strada Sforii, Brașov, Romania",
+        mode: "walking",
+        photo: GOOGLE_MAPS_PHOTO
+      },
+      {
+        id: "fri-sforii",
+        type: "action",
         duration: 20,
-        icon: '🧵',
-        title: 'Strada Sforii (Οδός του Σχοινιού)',
-        description: 'Μία από τις στενότερες ιστορικές οδούς της Ευρώπης, δημιουργημένη αρχικά ως διάδρομος πρόσβασης για τους πυροσβέστες του μεσαιωνικού Brașov.',
-        destination: 'Strada Sforii Brasov Romania',
-        mode: 'walking',
-        photo: OTHER_PHOTOS.sforii,
+        icon: "🧵",
+        title: "Strada Sforii (Οδός του Σχοινιού)",
+        description: "Μία από τις στενότερες ιστορικές οδούς της Ευρώπης, δημιουργημένη αρχικά ως διάδρομος πρόσβασης για τους πυροσβέστες του μεσαιωνικού Brașov.",
+        destination: "Strada Sforii, Brașov, Romania",
+        mode: "walking",
+        photo: OTHER_PHOTOS.sforii
       },
       {
-        id: 'fri-schei',
-        type: 'action',
-        duration: 20,
-        icon: '🏛️',
-        title: 'Poarta Șchei (Πύλη Σκέι)',
-        description: 'Νεοκλασική πύλη του 1827–1828 που συνέδεσε πιο άνετα την οχυρωμένη πόλη με τη συνοικία Șchei, σε μορφή θριαμβικής αψίδας.',
-        destination: 'Schei Gate Brasov Romania',
-        mode: 'walking',
-        photo: OTHER_PHOTOS.schei,
+        id: "fri-sforii-schei",
+        type: "route",
+        duration: 5,
+        icon: "🚶",
+        title: "Strada Sforii → Poarta Șchei",
+        description: "Με τα πόδια προς το επόμενο σημείο.",
+        origin: "Strada Sforii, Brașov, Romania",
+        destination: "Poarta Șchei, Strada Poarta Șchei, Brașov, Romania",
+        mode: "walking",
+        photo: GOOGLE_MAPS_PHOTO
       },
       {
-        id: 'fri-ecaterinei',
-        type: 'action',
-        duration: 20,
-        icon: '🏰',
-        title: 'Poarta Ecaterinei / Catherine’s Gate (Πύλη Αικατερίνης)',
-        description: 'Μεσαιωνική πύλη του 1559 με τέσσερις μικρούς πυργίσκους, από τα πιο χαρακτηριστικά σωζόμενα τμήματα των παλιών οχυρώσεων του Brașov.',
-        destination: "Catherine's Gate Brasov Romania",
-        mode: 'walking',
-        photo: OTHER_PHOTOS.ecaterinei,
-      },
-      {
-        id: 'fri-republicii',
-        type: 'action',
-        duration: 40,
-        icon: '🚶',
-        title: 'Strada Republicii (Οδός Δημοκρατίας)',
-        description: 'Ο κεντρικός πεζόδρομος του ιστορικού Brașov, με πολύχρωμα κτίρια, καφέ και καταστήματα μέσα στον πυρήνα της παλιάς πόλης.',
-        destination: 'Strada Republicii Brasov Romania',
-        mode: 'walking',
-        photo: OTHER_PHOTOS.republicii,
-      },
-      {
-        id: 'fri-to-zoomserie',
-        type: 'route',
-        duration: 30,
-        icon: '🚶',
-        title: 'Strada Republicii → Zoomserie Brașov',
-        description: 'Με τα πόδια προς το Zoomserie Brașov.',
-        destination: 'Zoomserie Brasov Romania',
-        mode: 'walking',
-        photo: GOOGLE_MAPS_PHOTO,
-      },
-      {
-        id: 'fri-dessert',
-        type: 'action',
-        duration: 60,
-        icon: '☕',
-        title: 'Zoomserie Brașov',
-        description: 'Στάση για γλυκό Ciocolover.',
-        photo: {
-          thumb: 'https://photos.wikimapia.org/p/00/04/62/26/54_big.jpg',
-          full: 'https://photos.wikimapia.org/p/00/04/62/26/54_big.jpg',
-          alt: 'Zoomserie Brașov',
-          credit: 'Zoomserie · Brașov',
-          source: 'https://wikimapia.org/32271033/ro/ZoomSerie',
-        },
-      },
-      {
-        id: 'fri-back-heritage',
-        type: 'route',
+        id: "fri-schei",
+        type: "action",
         duration: 10,
-        icon: '🏨',
-        title: 'Επιστροφή στο Heritage Loft 1735',
-        description: 'Με τα πόδια πίσω στο κατάλυμα.',
-        destination: 'Heritage Loft 1735 Brasov',
-        mode: 'walking',
-        photo: GOOGLE_MAPS_PHOTO,
+        icon: "🏛️",
+        title: "Poarta Șchei (Πύλη Σκέι)",
+        description: "Νεοκλασική πύλη του 1827–1828 που συνέδεσε πιο άνετα την οχυρωμένη πόλη με τη συνοικία Șchei, σε μορφή θριαμβικής αψίδας.",
+        destination: "Poarta Șchei, Strada Poarta Șchei, Brașov, Romania",
+        mode: "walking",
+        photo: OTHER_PHOTOS.schei
       },
       {
-        id: 'fri-heritage-night',
-        timeLabel: '20:00–08:30',
-        type: 'fixed',
-        duration: 720,
-        icon: '🛏️',
-        title: 'Heritage Loft 1735',
-        description: 'Ξεκούραση .',
-        fixedStart: '2026-11-06T20:00:00+02:00',
-        fixedLabel: 'REST',
-        photo: OTHER_PHOTOS.heritage,
+        id: "fri-schei-catherine",
+        type: "route",
+        duration: 3,
+        icon: "🚶",
+        title: "Poarta Șchei → Catherine’s Gate",
+        description: "Με τα πόδια προς το επόμενο σημείο.",
+        origin: "Poarta Șchei, Strada Poarta Șchei, Brașov, Romania",
+        destination: "Poarta Ecaterinei, Strada Poarta Șchei, Brașov, Romania",
+        mode: "walking",
+        photo: GOOGLE_MAPS_PHOTO
       },
-
-    ],
-  },
+      {
+        id: "fri-ecaterinei",
+        type: "action",
+        duration: 10,
+        icon: "🏰",
+        title: "Poarta Ecaterinei / Catherine’s Gate (Πύλη Αικατερίνης)",
+        description: "Μεσαιωνική πύλη του 1559 με τέσσερις μικρούς πυργίσκους, από τα πιο χαρακτηριστικά σωζόμενα τμήματα των παλιών οχυρώσεων του Brașov.",
+        destination: "Poarta Ecaterinei, Strada Poarta Șchei, Brașov, Romania",
+        mode: "walking",
+        photo: OTHER_PHOTOS.ecaterinei
+      },
+      {
+        id: "fri-catherine-republicii",
+        type: "route",
+        duration: 10,
+        icon: "🚶",
+        title: "Catherine’s Gate → Strada Republicii",
+        description: "Με τα πόδια προς το επόμενο σημείο.",
+        origin: "Poarta Ecaterinei, Strada Poarta Șchei, Brașov, Romania",
+        destination: "Strada Republicii, Brașov, Romania",
+        mode: "walking",
+        photo: GOOGLE_MAPS_PHOTO
+      },
+      {
+        id: "fri-republicii",
+        type: "action",
+        duration: 30,
+        icon: "🚶",
+        title: "Strada Republicii (Οδός Δημοκρατίας)",
+        description: "Ο κεντρικός πεζόδρομος του ιστορικού Brașov, με πολύχρωμα κτίρια, καφέ και καταστήματα μέσα στον πυρήνα της παλιάς πόλης.",
+        destination: "Strada Republicii, Brașov, Romania",
+        mode: "walking",
+        photo: OTHER_PHOTOS.republicii
+      },
+      {
+        id: "fri-to-zoomserie",
+        type: "route",
+        duration: 10,
+        icon: "🚶",
+        title: "Strada Republicii → Zoomserie Brașov",
+        description: "Με τα πόδια προς το Zoomserie Brașov.",
+        origin: "Strada Republicii, Brașov, Romania",
+        destination: "Zoomserie Brașov, Strada Apollonia Hirscher 1, Brașov",
+        mode: "walking",
+        photo: GOOGLE_MAPS_PHOTO
+      },
+      {
+        id: "fri-dessert",
+        type: "action",
+        duration: 45,
+        icon: "☕",
+        title: "Zoomserie Brașov",
+        description: "Στάση για γλυκό Ciocolover.",
+        photo: {
+          thumb: "https://photos.wikimapia.org/p/00/04/62/26/54_big.jpg",
+          full: "https://photos.wikimapia.org/p/00/04/62/26/54_big.jpg",
+          alt: "Zoomserie Brașov",
+          credit: "Zoomserie · Brașov",
+          source: "https://wikimapia.org/32271033/ro/ZoomSerie"
+        },
+        typeLabel: "ΓΕΥΜΑ",
+        disableNavigation: true
+      },
+      {
+        id: "fri-back-heritage",
+        type: "route",
+        duration: 10,
+        icon: "🚶",
+        title: "Zoomserie Brașov → Heritage Loft 1735",
+        description: "Με τα πόδια πίσω στο κατάλυμα.",
+        origin: "Zoomserie Brașov, Strada Apollonia Hirscher 1, Brașov",
+        destination: "Heritage Loft 1735, Strada Gheorghe Barițiu 26, Brașov, Romania",
+        mode: "walking",
+        photo: GOOGLE_MAPS_PHOTO
+      },
+      {
+        id: "fri-heritage-night",
+        type: "rest",
+        duration: 735,
+        icon: "🛏️",
+        title: "Heritage Loft 1735",
+        description: "Ξεκούραση.",
+        restUntil: "2026-11-07T08:30:00+02:00",
+        disableNavigation: true,
+        photo: OTHER_PHOTOS.heritage
+      }
+    ]
+  }
 ]
 
 const saturdayBlocks = [
   {
-    id: 'sat-day',
-    title: 'Μπλοκ ημέρας · Brașov → Zărnești → Bran → Bucharest → Otopeni',
-    startLabel: '🏨 ΦΕΥΓΟΥΜΕ ΑΠΟ ΤΟ HERITAGE — START',
-    plannedStart: '2026-11-07T08:30:00+02:00',
-    startHint: 'START όταν έχουμε κάνει checkout, οι βαλίτσες είναι στο αυτοκίνητο και ξεκινάμε.',
+    id: "sat-day-v2",
+    title: "Μπλοκ ημέρας · Brașov → Zărnești → Bucharest → Otopeni",
+    startLabel: "🏨 ΦΕΥΓΟΥΜΕ ΑΠΟ ΤΟ HERITAGE — START",
+    plannedStart: "2026-11-07T08:30:00+02:00",
+    startHint: "START όταν έχουμε κάνει checkout, οι βαλίτσες είναι στο αυτοκίνητο και ξεκινάμε.",
     activities: [
       {
-        id: 'sat-heritage-libearty',
-        type: 'route',
-        duration: 60,
-        icon: '🚗',
-        title: 'Heritage Loft 1735 → Libearty Bear Sanctuary',
-        description: 'Brașov → Zărnești με περιθώριο για άφιξη. Η ακριβής ώρα του tour δεν έχει κλειδωθεί ακόμα.',
-        destination: 'Libearty Bear Sanctuary Zarnesti Romania',
-        mode: 'driving',
-        photo: GOOGLE_MAPS_PHOTO,
-      },
-      {
-        id: 'sat-libearty',
-        type: 'action',
-        duration: 90,
-        icon: '🐻',
-        title: 'Libearty Bear Sanctuary (Καταφύγιο αρκούδων)',
-        description: 'Καταφύγιο κοντά στο Zărnești που φιλοξενεί διασωθείσες καφέ αρκούδες σε μεγάλες δασωμένες εκτάσεις, με επισκέψεις μόνο μέσω οργανωμένων ξεναγήσεων.',
-        photo: OTHER_PHOTOS.libearty,
-      },
-      {
-        id: 'sat-libearty-bran',
-        type: 'route',
-        duration: 45,
-        icon: '🚗',
-        title: 'Libearty → Bran Castle',
-        description: 'Οδήγηση Zărnești → Bran Castle',
-        destination: 'Bran Castle Romania',
-        mode: 'driving',
-        photo: GOOGLE_MAPS_PHOTO,
-      },
-      {
-        id: 'sat-bran',
-        type: 'action',
+        id: "sat-heritage-libearty",
+        type: "route",
         duration: 75,
-        icon: '🏰',
-        title: 'Bran Castle (Κάστρο Μπραν)',
-        description: 'Μεσαιωνικό κάστρο του 14ου αιώνα σε στρατηγικό πέρασμα των Καρπαθίων, γνωστό παγκοσμίως για τη σύνδεσή του με τον θρύλο του Dracula.',
-        photo: OTHER_PHOTOS.bran,
+        icon: "🚗",
+        title: "Heritage Loft 1735 → Libearty Bear Sanctuary",
+        description: "Οδήγηση Brașov → Zărnești, parking και περιθώριο άφιξης/check-in για το Classic Tour των 09:45.",
+        origin: "Heritage Loft 1735, Strada Gheorghe Barițiu 26, Brașov, Romania",
+        destination: "AMP Libearty Bear Sanctuary, Zărnești, Brașov County, Romania",
+        mode: "driving",
+        photo: GOOGLE_MAPS_PHOTO
       },
       {
-        id: 'sat-bran-bucharest',
-        type: 'route',
-        duration: 240,
-        icon: '🚗',
-        title: 'Bran → Bucharest (φαγητό Micoteca – Mici)',
-        description: 'Επιστροφή στο Βουκουρέστι (Μεγάλη διαδρομή).',
-        destination: 'Micoteca Aleea Michael Jackson 1 Bucharest',
-        mode: 'driving',
-        photo: GOOGLE_MAPS_PHOTO,
+        id: "sat-libearty",
+        type: "action",
+        duration: 90,
+        icon: "🐻",
+        title: "Libearty Bear Sanctuary (Καταφύγιο αρκούδων)",
+        description: "Καταφύγιο κοντά στο Zărnești που φιλοξενεί διασωθείσες καφέ αρκούδες σε μεγάλες δασωμένες εκτάσεις, με επισκέψεις μόνο μέσω οργανωμένων ξεναγήσεων.",
+        photo: OTHER_PHOTOS.libearty
       },
       {
-        id: 'sat-micoteca',
-        type: 'action',
+        id: "sat-libearty-micoteca",
+        type: "route",
+        duration: 210,
+        icon: "🚗",
+        title: "Libearty Bear Sanctuary → Micoteca",
+        description: "Οδήγηση από Zărnești προς Bucharest με τελικό προορισμό το Micoteca.",
+        origin: "AMP Libearty Bear Sanctuary, Zărnești, Brașov County, Romania",
+        destination: "Micoteca, Intrarea Arcul de Triumf / Aleea Michael Jackson 1, București",
+        mode: "driving",
+        photo: GOOGLE_MAPS_PHOTO
+      },
+      {
+        id: "sat-micoteca",
+        type: "action",
         duration: 60,
-        icon: '🍽️',
-        title: 'Micoteca',
-        description: 'Τα Mici είναι παραδοσιακά ρουμανικά μικρά ρολά κιμά χωρίς έντερο, ψημένα στα κάρβουνα και συνήθως σερβιρισμένα με μουστάρδα. Διεύθυνση: Intrarea Arcul de Triumf, Parcul Herăstrău, Aleea Michael Jackson 1, 011453 București.',
+        icon: "🍽️",
+        title: "Micoteca",
+        description: "Τα Mici είναι παραδοσιακά ρουμανικά μικρά ρολά κιμά χωρίς έντερο, ψημένα στα κάρβουνα και συνήθως σερβιρισμένα με μουστάρδα. Διεύθυνση: Intrarea Arcul de Triumf, Parcul Herăstrău, Aleea Michael Jackson 1, 011453 București.",
         photo: OTHER_PHOTOS.micoteca,
+        typeLabel: "ΓΕΥΜΑ",
+        disableNavigation: true
       },
       {
-        id: 'sat-micoteca-da',
-        type: 'route',
+        id: "sat-micoteca-da",
+        type: "route",
         duration: 60,
-        icon: '🚗',
-        title: 'Micoteca → DA Residence, Otopeni',
-        description: 'Οδήγηση προς 8 Strada 9 Mai, Otopeni. Δωρεάν ιδιωτικό parking στο κατάλυμα.',
-        destination: 'DA Residence 8 Strada 9 Mai Otopeni Romania',
-        mode: 'driving',
+        icon: "🚗",
+        title: "Micoteca → DA Residence, Otopeni",
+        description: "Οδήγηση προς 8 Strada 9 Mai, Otopeni. Δωρεάν ιδιωτικό parking στο κατάλυμα.",
+        destination: "DA Residence, 8 Strada 9 Mai, Otopeni, Romania",
+        mode: "driving",
         photo: GOOGLE_MAPS_PHOTO,
+        origin: "Micoteca, Intrarea Arcul de Triumf / Aleea Michael Jackson 1, București"
       },
       {
-        id: 'sat-da-residence-night',
-        timeLabel: '19:00–07:00',
-        type: 'fixed',
-        duration: 720,
-        icon: '🛏️',
-        title: 'DA Residence',
-        description: 'Ξεκούραση .',
-        fixedStart: '2026-11-07T19:00:00+02:00',
-        fixedLabel: 'REST',
-        photo: OTHER_PHOTOS.daResidence,
-      },
-
-    ],
-  },
+        id: "sat-da-residence-night",
+        type: "rest",
+        duration: 855,
+        icon: "🛏️",
+        title: "DA Residence",
+        description: "Ξεκούραση.",
+        restUntil: "2026-11-08T07:00:00+02:00",
+        disableNavigation: true,
+        photo: OTHER_PHOTOS.daResidence
+      }
+    ]
+  }
 ]
 
 const sundayBlocks = [
@@ -932,7 +997,9 @@ function getSchedule(block, state) {
       estimatedStart = fixed
     }
 
-    const estimatedEnd = addMinutes(estimatedStart, activity.duration)
+    const estimatedEnd = activity.restUntil
+      ? new Date(Math.max(estimatedStart.getTime(), new Date(activity.restUntil).getTime()))
+      : addMinutes(estimatedStart, activity.duration)
 
     if (completedAt) {
       cursor = completedAt
@@ -944,6 +1011,7 @@ function getSchedule(block, state) {
 
     return {
       ...activity,
+      duration: activity.restUntil ? Math.round((estimatedEnd - estimatedStart) / 60000) : activity.duration,
       index,
       completedAt,
       estimatedStart,
@@ -1103,7 +1171,9 @@ function LiveBlock({ block, liveState, onStart, onEnd, onReset, onOpenPhoto }) {
                       ? `END ${fmtClock(item.completedAt)}`
                       : item.type === 'fixed'
                         ? (item.timeLabel || fmtClock(item.fixedStart))
-                        : `${fmtClock(item.estimatedStart)} → ${fmtClock(item.estimatedEnd)}`}
+                        : item.restUntil
+                          ? `${fmtClock(item.estimatedStart)}–${fmtClock(item.estimatedEnd)}`
+                          : `${fmtClock(item.estimatedStart)} → ${fmtClock(item.estimatedEnd)}`}
                   </span>
                 </div>
 
@@ -1131,6 +1201,7 @@ function LiveBlock({ block, liveState, onStart, onEnd, onReset, onOpenPhoto }) {
                         item.id,
                         nextNeedsNavigation ? nextItem.destination : null,
                         nextNeedsNavigation ? nextItem.mode : null,
+                        nextNeedsNavigation ? nextItem.origin : null,
                       )}
                     >
                       {nextNeedsNavigation ? '✓ END → GOOGLE MAPS' : '✓ END'}
@@ -1204,7 +1275,7 @@ export default function App() {
     }))
   }
 
-  function endActivity(blockId, activityId, nextDestination = null, nextMode = 'walking') {
+  function endActivity(blockId, activityId, nextDestination = null, nextMode = 'walking', nextOrigin = null) {
     const blockState = getBlockState(liveState, blockId)
     const nextState = {
       ...liveState,
@@ -1221,7 +1292,7 @@ export default function App() {
     setLiveState(nextState)
 
     if (nextDestination) {
-      window.location.assign(mapUrl(nextDestination, nextMode || 'walking'))
+      window.location.assign(mapUrl(nextDestination, nextMode || 'walking', nextOrigin))
     }
   }
 
