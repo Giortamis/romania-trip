@@ -489,8 +489,8 @@ const OTHER_PHOTOS = {
 
 const fridayBlocks = [
   {
-    id: "fri-morning-v2",
-    title: "Μπλοκ 1 · Ralf → Interparking → Bran → Brașov",
+    id: "fri-morning-v3",
+    title: "Μπλοκ 1 · Ralf → Interparking → Bran → Ograda → Heritage",
     startLabel: "🏨 ΦΕΥΓΟΥΜΕ ΑΠΟ ΤΟ RALF — START",
     plannedStart: "2026-11-06T08:30:00+02:00",
     startHint: "Πατάμε START όταν φύγουμε από το Ralf. Πρώτα περπατάμε προς το Interparking και μετά οδηγούμε προς Bran.",
@@ -529,49 +529,15 @@ const fridayBlocks = [
         photo: OTHER_PHOTOS.bran
       },
       {
-        id: "fri-bran-heritage",
+        id: "fri-bran-ograda",
         type: "route",
-        duration: 45,
+        duration: 75,
         icon: "🚗",
-        title: "Bran Castle → Heritage Loft 1735",
-        description: "Οδήγηση από Bran προς Brașov και parking στο Heritage Loft 1735.",
+        title: "Bran Castle → Ograda",
+        description: "Οδήγηση από Bran προς Ograda – Piața Sfatului στο Brașov.",
         origin: "Bran Castle, Strada General Traian Moșoiu 24, 507025 Bran, Romania",
-        destination: "Heritage Loft 1735, Strada Gheorghe Barițiu 26, Brașov, Romania",
-        mode: "driving",
-        photo: GOOGLE_MAPS_PHOTO
-      },
-      {
-        id: "fri-heritage-checkin-rest",
-        timeLabel: "14:00–15:30",
-        type: "fixed",
-        duration: 90,
-        icon: "🛏️",
-        title: "Heritage Loft 1735",
-        description: "check-in / Ξεκούραση.",
-        fixedStart: "2026-11-06T14:00:00+02:00",
-        fixedLabel: "REST",
-        photo: OTHER_PHOTOS.heritage,
-        disableNavigation: true
-      }
-    ]
-  },
-  {
-    id: "fri-afternoon-v2",
-    title: "Μπλοκ 2 · Brașov με τα πόδια",
-    startLabel: "🏨 ΦΕΥΓΟΥΜΕ ΑΠΟ ΤΟ HERITAGE — START",
-    plannedStart: "2026-11-06T15:30:00+02:00",
-    startHint: "Νέο START όταν φύγουμε από το Heritage. Από εδώ και μετά όλα γίνονται με τα πόδια.",
-    activities: [
-      {
-        id: "fri-heritage-ograda",
-        type: "route",
-        duration: 10,
-        icon: "🚶",
-        title: "Heritage Loft 1735 → Ograda",
-        description: "Με τα πόδια προς το Ograda στην Piața Sfatului.",
-        origin: "Heritage Loft 1735, Strada Gheorghe Barițiu 26, Brașov, Romania",
         destination: "Ograda, Piața Sfatului 14, Brașov",
-        mode: "walking",
+        mode: "driving",
         photo: GOOGLE_MAPS_PHOTO
       },
       {
@@ -592,13 +558,45 @@ const fridayBlocks = [
         disableNavigation: true
       },
       {
-        id: "fri-ograda-square",
+        id: "fri-ograda-heritage",
         type: "route",
-        duration: 2,
-        icon: "🚶",
-        title: "Ograda → Piața Sfatului",
-        description: "Με τα πόδια στην Piața Sfatului, με χρόνο για έξοδο από το εστιατόριο.",
+        duration: 25,
+        icon: "🚗",
+        title: "Ograda → Heritage Loft 1735",
+        description: "Οδήγηση προς το Heritage Loft 1735 και parking στο κατάλυμα.",
         origin: "Ograda, Piața Sfatului 14, Brașov",
+        destination: "Heritage Loft 1735, Strada Gheorghe Barițiu 26, Brașov, Romania",
+        mode: "driving",
+        photo: GOOGLE_MAPS_PHOTO
+      },
+      {
+        id: "fri-heritage-checkin-rest",
+        type: "rest",
+        duration: 90,
+        icon: "🛏️",
+        title: "Heritage Loft 1735",
+        description: "check-in / Ξεκούραση.",
+        photo: OTHER_PHOTOS.heritage,
+        disableNavigation: true,
+        showTimeRange: true
+      }
+    ]
+  },
+  {
+    id: "fri-afternoon-v3",
+    title: "Μπλοκ 2 · Brașov με τα πόδια",
+    startLabel: "🏨 ΦΕΥΓΟΥΜΕ ΑΠΟ ΤΟ HERITAGE — START",
+    plannedStart: "2026-11-06T16:40:00+02:00",
+    startHint: "Νέο START όταν φύγουμε από το Heritage. Από εδώ και μετά όλα γίνονται με τα πόδια.",
+    activities: [
+      {
+        id: "fri-heritage-square",
+        type: "route",
+        duration: 10,
+        icon: "🚶",
+        title: "Heritage Loft 1735 → Piața Sfatului",
+        description: "Με τα πόδια από το Heritage Loft 1735 προς την Piața Sfatului.",
+        origin: "Heritage Loft 1735, Strada Gheorghe Barițiu 26, Brașov, Romania",
         destination: "Piața Sfatului, Brașov, Romania",
         mode: "walking",
         photo: GOOGLE_MAPS_PHOTO
@@ -773,7 +771,7 @@ const fridayBlocks = [
       {
         id: "fri-heritage-night",
         type: "rest",
-        duration: 735,
+        duration: 727,
         icon: "🛏️",
         title: "Heritage Loft 1735",
         description: "Ξεκούραση.",
@@ -1171,7 +1169,7 @@ function LiveBlock({ block, liveState, onStart, onEnd, onReset, onOpenPhoto }) {
                       ? `END ${fmtClock(item.completedAt)}`
                       : item.type === 'fixed'
                         ? (item.timeLabel || fmtClock(item.fixedStart))
-                        : item.restUntil
+                        : item.restUntil || item.showTimeRange
                           ? `${fmtClock(item.estimatedStart)}–${fmtClock(item.estimatedEnd)}`
                           : `${fmtClock(item.estimatedStart)} → ${fmtClock(item.estimatedEnd)}`}
                   </span>
