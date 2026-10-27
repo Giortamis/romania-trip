@@ -8,30 +8,127 @@ const {fri,sat}=Function(data+'\nreturn {fri:fridayBlocks,sat:saturdayBlocks}')(
 const schedule=Function('addMinutes',source.slice(source.indexOf('function getSchedule'),source.indexOf('function getCurrentIndex'))+'\nreturn getSchedule')((d,m)=>new Date(d.getTime()+m*60000))
 const clock=d=>new Intl.DateTimeFormat('el-GR',{timeZone:'Europe/Bucharest',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(d)
 
-test('Friday lunch precedes hotel arrival and check-in REST follows actual arrival',()=>{
-  assert.deepEqual(fri[0].activities.map(a=>a.id),[
-    'fri-ralf-interparking','fri-interparking-bran','fri-bran','fri-bran-ograda',
-    'fri-la-ceaun','fri-ograda-heritage','fri-heritage-checkin-rest',
-  ])
-  const route=fri[0].activities[3],hotel=fri[0].activities[5],walk=fri[1].activities[0]
-  assert.equal(route.destination,'Ograda, Piața Sfatului 14, Brașov')
-  assert.equal(route.mode,'driving')
-  assert.equal(hotel.origin,route.destination)
-  assert.equal(hotel.destination,'Heritage Loft 1735, Strada Gheorghe Barițiu 26, Brașov, Romania')
-  assert.equal(hotel.mode,'driving')
-  assert.equal(walk.origin,hotel.destination)
-  assert.equal(walk.destination,'Piața Sfatului, Brașov, Romania')
-  assert.equal(walk.mode,'walking')
-  const normal=schedule(fri[0],{completed:{}}),hotelArrival=normal.at(-2).estimatedEnd
-  assert.equal(+normal.at(-1).estimatedStart,+hotelArrival)
-  const late=schedule(fri[0],{completed:{[hotel.id]:new Date(hotelArrival.getTime()+30*60000).toISOString()}})
-  assert.equal(late.at(-1).estimatedStart-normal.at(-1).estimatedStart,30*60000)
-  assert.equal(late.at(-1).estimatedEnd-normal.at(-1).estimatedEnd,30*60000)
-  assert.equal(late.at(-1).showTimeRange,true)
+const finalFriday = [
+  [
+    "fri-ralf-interparking",
+    "08:30",
+    "08:45"
+  ],
+  [
+    "fri-interparking-bran",
+    "08:45",
+    "11:30"
+  ],
+  [
+    "fri-bran",
+    "11:30",
+    "12:45"
+  ],
+  [
+    "fri-bran-heritage",
+    "12:45",
+    "13:40"
+  ],
+  [
+    "fri-heritage-arrival",
+    "13:40",
+    "13:50"
+  ],
+  [
+    "fri-heritage-ograda",
+    "13:50",
+    "14:00"
+  ],
+  [
+    "fri-la-ceaun",
+    "14:00",
+    "15:00"
+  ],
+  [
+    "fri-ograda-heritage",
+    "15:00",
+    "15:15"
+  ],
+  [
+    "fri-heritage-checkin-rest",
+    "15:15",
+    "16:30"
+  ],
+  [
+    "fri-heritage-black-church",
+    "16:30",
+    "16:45"
+  ],
+  [
+    "fri-black-church",
+    "16:45",
+    "17:15"
+  ],
+  [
+    "fri-black-church-catherine",
+    "17:15",
+    "17:25"
+  ],
+  [
+    "fri-ecaterinei",
+    "17:25",
+    "17:35"
+  ],
+  [
+    "fri-catherine-republicii",
+    "17:35",
+    "17:45"
+  ],
+  [
+    "fri-republicii",
+    "17:45",
+    "18:15"
+  ],
+  [
+    "fri-to-zoomserie",
+    "18:15",
+    "18:25"
+  ],
+  [
+    "fri-dessert",
+    "18:25",
+    "19:10"
+  ],
+  [
+    "fri-back-heritage",
+    "19:10",
+    "19:20"
+  ],
+  [
+    "fri-heritage-night",
+    "19:20",
+    "08:30"
+  ]
+]
+
+test('Friday matches every agreed time and keeps the car parked after Heritage arrival',()=>{
+  const all=fri.flatMap(b=>schedule(b,{completed:{}}))
+  assert.deepEqual(all.map(a=>[a.id,clock(a.estimatedStart),clock(a.estimatedEnd)]),finalFriday)
+  assert.ok(!all.some(a=>/Sforii|Poarta Șchei/.test(a.title)))
+  assert.ok(!all.some(a=>a.id==='fri-piata-sfatului'))
+  for(const a of all.slice(4).filter(a=>a.type==='route'))assert.equal(a.mode,'walking',a.id)
+  const checkin=all.find(a=>a.id==='fri-heritage-checkin-rest')
+  assert.equal(checkin.type,'rest')
+  assert.equal(checkin.showTimeRange,true)
+  assert.equal(checkin.description,'check-in / Ξεκούραση.')
+  assert.equal(all.at(-1).description,'Ξεκούραση.')
+  const expected={
+    'fri-bran-heritage':['Heritage Loft 1735, Strada Gheorghe Barițiu 26, Brașov, Romania','driving'],
+    'fri-heritage-ograda':['Ograda, Piața Sfatului 14, Brașov','walking'],
+    'fri-ograda-heritage':['Heritage Loft 1735, Strada Gheorghe Barițiu 26, Brașov, Romania','walking'],
+    'fri-heritage-black-church':['Black Church, Curtea Johannes Honterus 2, Brașov','walking'],
+    'fri-to-zoomserie':['Zoomserie Brașov, Strada Apollonia Hirscher 1, Brașov','walking'],
+  }
+  for(const [id,wanted] of Object.entries(expected)){const a=all.find(a=>a.id===id);assert.deepEqual([a.destination,a.mode],wanted,id)}
 })
 
 test('overnight REST starts at arrival, follows delayed START/END, and ends next morning',()=>{
-  for(const [block,start,end] of [[fri[1],'20:23','08:30'],[sat[0],'16:45','07:00']]){
+  for(const [block,start,end] of [[fri[1],'19:20','08:30'],[sat[0],'16:45','07:00']]){
     const normal=schedule(block,{completed:{}})
     assert.equal(clock(normal.at(-1).estimatedStart),start)
     assert.equal(clock(normal.at(-1).estimatedEnd),end)
@@ -53,14 +150,14 @@ test('Bran is Friday only, Libearty is Saturday only, and Pelisor is removed',()
   assert.equal(clock(schedule(sat[0],{completed:{}})[1].estimatedStart),'09:45')
   const rest=schedule(fri[0],{completed:{}}).at(-1)
   assert.equal(rest.type,'rest')
-  assert.equal(clock(rest.estimatedStart),'15:10')
-  assert.equal(clock(rest.estimatedEnd),'16:40')
+  assert.equal(clock(rest.estimatedStart),'15:15')
+  assert.equal(clock(rest.estimatedEnd),'16:30')
 })
 
 test('all Friday/Saturday routes have explicit endpoints/modes; meals and REST have no navigation',()=>{
   const mapUrl=Function(source.slice(source.indexOf('function mapUrl'),source.indexOf('function getBlockState'))+'\nreturn mapUrl')()
   const all=[...fri,...sat].flatMap(b=>b.activities)
-  assert.equal(all.filter(a=>a.type==='route').length,15)
+  assert.equal(all.filter(a=>a.type==='route').length,13)
   assert.equal(new Set(all.map(a=>a.id)).size,all.length)
   for(const a of all){
     if(a.type==='route'){

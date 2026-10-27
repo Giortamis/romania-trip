@@ -489,8 +489,8 @@ const OTHER_PHOTOS = {
 
 const fridayBlocks = [
   {
-    id: "fri-morning-v3",
-    title: "Μπλοκ 1 · Ralf → Interparking → Bran → Ograda → Heritage",
+    id: "fri-morning-v4",
+    title: "Μπλοκ 1 · Ralf → Interparking → Bran → Heritage → Ograda → Heritage",
     startLabel: "🏨 ΦΕΥΓΟΥΜΕ ΑΠΟ ΤΟ RALF — START",
     plannedStart: "2026-11-06T08:30:00+02:00",
     startHint: "Πατάμε START όταν φύγουμε από το Ralf. Πρώτα περπατάμε προς το Interparking και μετά οδηγούμε προς Bran.",
@@ -510,7 +510,7 @@ const fridayBlocks = [
       {
         id: "fri-interparking-bran",
         type: "route",
-        duration: 150,
+        duration: 165,
         icon: "🚗",
         title: "Interparking Piața Universității → Bran Castle",
         description: "Οδήγηση από το Βουκουρέστι προς το Bran Castle.",
@@ -529,15 +529,37 @@ const fridayBlocks = [
         photo: OTHER_PHOTOS.bran
       },
       {
-        id: "fri-bran-ograda",
+        id: "fri-bran-heritage",
         type: "route",
-        duration: 75,
+        duration: 55,
         icon: "🚗",
-        title: "Bran Castle → Ograda",
-        description: "Οδήγηση από Bran προς Ograda – Piața Sfatului στο Brașov.",
+        title: "Bran Castle → Heritage Loft 1735",
+        description: "Οδήγηση από Bran προς το Heritage Loft 1735 στο Brașov.",
         origin: "Bran Castle, Strada General Traian Moșoiu 24, 507025 Bran, Romania",
-        destination: "Ograda, Piața Sfatului 14, Brașov",
+        destination: "Heritage Loft 1735, Strada Gheorghe Barițiu 26, Brașov, Romania",
         mode: "driving",
+        photo: GOOGLE_MAPS_PHOTO
+      },
+      {
+        id: "fri-heritage-arrival",
+        type: "action",
+        duration: 10,
+        icon: "🅿️",
+        title: "Heritage Loft 1735 – άφιξη / parking",
+        description: "Παρκάρουμε και αφήνουμε το αυτοκίνητο και τις αποσκευές στο Heritage Loft 1735. Από εδώ και μετά κινούμαστε με τα πόδια.",
+        disableNavigation: true,
+        photo: OTHER_PHOTOS.heritage
+      },
+      {
+        id: "fri-heritage-ograda",
+        type: "route",
+        duration: 10,
+        icon: "🚶",
+        title: "Heritage Loft 1735 → Ograda",
+        description: "Με τα πόδια από το Heritage Loft 1735 προς το Ograda στην Piața Sfatului.",
+        origin: "Heritage Loft 1735, Strada Gheorghe Barițiu 26, Brașov, Romania",
+        destination: "Ograda, Piața Sfatului 14, Brașov",
+        mode: "walking",
         photo: GOOGLE_MAPS_PHOTO
       },
       {
@@ -549,8 +571,8 @@ const fridayBlocks = [
         title: "Ograda Restaurant",
         description: "(Slow-Cooked Beef Cheeks ή Goulash with Beef Cheeks, Cooked in Cauldron)",
         photo: {
-          thumb: `${import.meta.env.BASE_URL}images/ograda.jpg`,
-          full: `${import.meta.env.BASE_URL}images/ograda.jpg`,
+          thumb: (import.meta.env.BASE_URL + "images/ograda.jpg"),
+          full: (import.meta.env.BASE_URL + "images/ograda.jpg"),
           alt: "Ograda Restaurant – Brașov",
           credit: "Ograda Restaurant",
           source: "https://www.tripadvisor.com.gr/Restaurant_Review-g295394-d21225584-Reviews-Ograda-Brasov_Brasov_County_Central_Romania_Transylvania.html"
@@ -560,19 +582,19 @@ const fridayBlocks = [
       {
         id: "fri-ograda-heritage",
         type: "route",
-        duration: 25,
-        icon: "🚗",
+        duration: 15,
+        icon: "🚶",
         title: "Ograda → Heritage Loft 1735",
-        description: "Οδήγηση προς το Heritage Loft 1735 και parking στο κατάλυμα.",
+        description: "Με τα πόδια από το Ograda προς το Heritage Loft 1735. Το αυτοκίνητο παραμένει παρκαρισμένο στο κατάλυμα.",
         origin: "Ograda, Piața Sfatului 14, Brașov",
         destination: "Heritage Loft 1735, Strada Gheorghe Barițiu 26, Brașov, Romania",
-        mode: "driving",
+        mode: "walking",
         photo: GOOGLE_MAPS_PHOTO
       },
       {
         id: "fri-heritage-checkin-rest",
         type: "rest",
-        duration: 90,
+        duration: 75,
         icon: "🛏️",
         title: "Heritage Loft 1735",
         description: "check-in / Ξεκούραση.",
@@ -583,43 +605,20 @@ const fridayBlocks = [
     ]
   },
   {
-    id: "fri-afternoon-v3",
+    id: "fri-afternoon-v4",
     title: "Μπλοκ 2 · Brașov με τα πόδια",
     startLabel: "🏨 ΦΕΥΓΟΥΜΕ ΑΠΟ ΤΟ HERITAGE — START",
-    plannedStart: "2026-11-06T16:40:00+02:00",
+    plannedStart: "2026-11-06T16:30:00+02:00",
     startHint: "Νέο START όταν φύγουμε από το Heritage. Από εδώ και μετά όλα γίνονται με τα πόδια.",
     activities: [
       {
-        id: "fri-heritage-square",
+        id: "fri-heritage-black-church",
         type: "route",
-        duration: 10,
+        duration: 15,
         icon: "🚶",
-        title: "Heritage Loft 1735 → Piața Sfatului",
-        description: "Με τα πόδια από το Heritage Loft 1735 προς την Piața Sfatului.",
+        title: "Heritage Loft 1735 → Black Church",
+        description: "Με τα πόδια από το Heritage Loft 1735 προς τη Black Church.",
         origin: "Heritage Loft 1735, Strada Gheorghe Barițiu 26, Brașov, Romania",
-        destination: "Piața Sfatului, Brașov, Romania",
-        mode: "walking",
-        photo: GOOGLE_MAPS_PHOTO
-      },
-      {
-        id: "fri-piata-sfatului",
-        type: "action",
-        duration: 20,
-        icon: "📍",
-        title: "Piața Sfatului (Πλατεία Συμβουλίου)",
-        description: "Η ιστορική κεντρική πλατεία του Brașov, περιτριγυρισμένη από πολύχρωμα κτίρια και με το παλιό Δημαρχείο στο κέντρο.",
-        destination: "Piața Sfatului, Brașov, Romania",
-        mode: "walking",
-        photo: OTHER_PHOTOS.piataSfatului
-      },
-      {
-        id: "fri-square-church",
-        type: "route",
-        duration: 5,
-        icon: "🚶",
-        title: "Piața Sfatului → Black Church",
-        description: "Με τα πόδια προς το επόμενο σημείο.",
-        origin: "Piața Sfatului, Brașov, Romania",
         destination: "Black Church, Curtea Johannes Honterus 2, Brașov",
         mode: "walking",
         photo: GOOGLE_MAPS_PHOTO
@@ -636,59 +635,13 @@ const fridayBlocks = [
         photo: OTHER_PHOTOS.blackChurch
       },
       {
-        id: "fri-church-sforii",
+        id: "fri-black-church-catherine",
         type: "route",
-        duration: 5,
-        icon: "🚶",
-        title: "Black Church → Strada Sforii",
-        description: "Με τα πόδια προς το επόμενο σημείο.",
-        origin: "Black Church, Curtea Johannes Honterus 2, Brașov",
-        destination: "Strada Sforii, Brașov, Romania",
-        mode: "walking",
-        photo: GOOGLE_MAPS_PHOTO
-      },
-      {
-        id: "fri-sforii",
-        type: "action",
-        duration: 20,
-        icon: "🧵",
-        title: "Strada Sforii (Οδός του Σχοινιού)",
-        description: "Μία από τις στενότερες ιστορικές οδούς της Ευρώπης, δημιουργημένη αρχικά ως διάδρομος πρόσβασης για τους πυροσβέστες του μεσαιωνικού Brașov.",
-        destination: "Strada Sforii, Brașov, Romania",
-        mode: "walking",
-        photo: OTHER_PHOTOS.sforii
-      },
-      {
-        id: "fri-sforii-schei",
-        type: "route",
-        duration: 5,
-        icon: "🚶",
-        title: "Strada Sforii → Poarta Șchei",
-        description: "Με τα πόδια προς το επόμενο σημείο.",
-        origin: "Strada Sforii, Brașov, Romania",
-        destination: "Poarta Șchei, Strada Poarta Șchei, Brașov, Romania",
-        mode: "walking",
-        photo: GOOGLE_MAPS_PHOTO
-      },
-      {
-        id: "fri-schei",
-        type: "action",
         duration: 10,
-        icon: "🏛️",
-        title: "Poarta Șchei (Πύλη Σκέι)",
-        description: "Νεοκλασική πύλη του 1827–1828 που συνέδεσε πιο άνετα την οχυρωμένη πόλη με τη συνοικία Șchei, σε μορφή θριαμβικής αψίδας.",
-        destination: "Poarta Șchei, Strada Poarta Șchei, Brașov, Romania",
-        mode: "walking",
-        photo: OTHER_PHOTOS.schei
-      },
-      {
-        id: "fri-schei-catherine",
-        type: "route",
-        duration: 3,
         icon: "🚶",
-        title: "Poarta Șchei → Catherine’s Gate",
-        description: "Με τα πόδια προς το επόμενο σημείο.",
-        origin: "Poarta Șchei, Strada Poarta Șchei, Brașov, Romania",
+        title: "Black Church → Catherine’s Gate",
+        description: "Με τα πόδια από τη Black Church προς την Catherine’s Gate.",
+        origin: "Black Church, Curtea Johannes Honterus 2, Brașov",
         destination: "Poarta Ecaterinei, Strada Poarta Șchei, Brașov, Romania",
         mode: "walking",
         photo: GOOGLE_MAPS_PHOTO
@@ -771,7 +724,7 @@ const fridayBlocks = [
       {
         id: "fri-heritage-night",
         type: "rest",
-        duration: 727,
+        duration: 790,
         icon: "🛏️",
         title: "Heritage Loft 1735",
         description: "Ξεκούραση.",
