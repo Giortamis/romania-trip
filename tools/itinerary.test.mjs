@@ -128,7 +128,7 @@ test('Friday matches every agreed time and keeps the car parked after Heritage a
 })
 
 test('overnight REST starts at arrival, follows delayed START/END, and ends next morning',()=>{
-  for(const [block,start,end] of [[fri[1],'19:20','08:30'],[sat[0],'16:45','07:00']]){
+  for(const [block,start,end] of [[fri[1],'19:20','08:30'],[sat[1],'20:10','07:00']]){
     const normal=schedule(block,{completed:{}})
     assert.equal(clock(normal.at(-1).estimatedStart),start)
     assert.equal(clock(normal.at(-1).estimatedEnd),end)
@@ -157,7 +157,7 @@ test('Bran is Friday only, Libearty is Saturday only, and Pelisor is removed',()
 test('all Friday/Saturday routes have explicit endpoints/modes; meals and REST have no navigation',()=>{
   const mapUrl=Function(source.slice(source.indexOf('function mapUrl'),source.indexOf('function getBlockState'))+'\nreturn mapUrl')()
   const all=[...fri,...sat].flatMap(b=>b.activities)
-  assert.equal(all.filter(a=>a.type==='route').length,13)
+  assert.equal(all.filter(a=>a.type==='route').length,17)
   assert.equal(new Set(all.map(a=>a.id)).size,all.length)
   for(const a of all){
     if(a.type==='route'){
