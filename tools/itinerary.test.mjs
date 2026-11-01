@@ -10,7 +10,7 @@ const clock=d=>new Intl.DateTimeFormat('el-GR',{timeZone:'Europe/Bucharest',hour
 
 const finalFriday = [
   [
-    "fri-ralf-interparking",
+    "fri-chanttal-interparking",
     "08:30",
     "08:45"
   ],
