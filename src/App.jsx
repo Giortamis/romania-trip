@@ -399,12 +399,12 @@ const OTHER_PHOTOS = {
     credit: 'Libearty · επίσημη ιστοσελίδα',
     source: 'https://millionsoffriends.org/libearty/viziteaza-sanctuarul/',
   },
-  micoteca: {
-    thumb: `${import.meta.env.BASE_URL}images/micoteca.jpg`,
-    full: `${import.meta.env.BASE_URL}images/micoteca.jpg`,
-    alt: 'Micoteca – Herăstrău',
-    credit: 'Tripadvisor · Micoteca',
-    source: 'https://www.tripadvisor.com.gr/Restaurant_Review-g294458-d33285940-Reviews-Micoteca-Bucharest.html',
+  zexe: {
+    thumb: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fzexe.ro%2F?w=520',
+    full: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fzexe.ro%2F?w=1400',
+    alt: 'Zexe – Zahanaua Gastronomică, București',
+    credit: 'Zexe · επίσημη ιστοσελίδα',
+    source: 'https://zexe.ro/',
   },
   daResidence: {
     thumb: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.booking.com%2Fhotel%2Fro%2Fda-residence-otopeni1.en-gb.html?w=520',
@@ -722,39 +722,39 @@ const saturdayBlocks = [
         photo: OTHER_PHOTOS.libearty
       },
       {
-        id: "sat-libearty-micoteca",
+        id: "sat-libearty-zexe",
         type: "route",
         duration: 210,
         icon: "🚗",
-        title: "Libearty Bear Sanctuary → Micoteca",
-        description: "Οδήγηση από Zărnești προς Bucharest με τελικό προορισμό το Micoteca.",
+        title: "Libearty Bear Sanctuary → Zexe",
+        description: "Οδήγηση από Zărnești προς Bucharest με τελικό προορισμό το Zexe, Bulevardul Aviatorilor 40.",
         origin: "AMP Libearty Bear Sanctuary, Zărnești, Brașov County, Romania",
-        destination: "Micoteca, Intrarea Arcul de Triumf / Aleea Michael Jackson 1, București",
+        destination: "Zexe, Bulevardul Aviatorilor 40, 011863 București, Romania",
         mode: "driving",
         photo: GOOGLE_MAPS_PHOTO
       },
       {
-        id: "sat-micoteca",
+        id: "sat-zexe",
         type: "action",
         duration: 60,
         icon: "🍽️",
-        title: "Micoteca",
-        description: "Τα Mici είναι παραδοσιακά ρουμανικά μικρά ρολά κιμά χωρίς έντερο, ψημένα στα κάρβουνα και συνήθως σερβιρισμένα με μουστάρδα. Διεύθυνση: Intrarea Arcul de Triumf, Parcul Herăstrău, Aleea Michael Jackson 1, 011453 București.",
-        photo: OTHER_PHOTOS.micoteca,
+        title: "Zexe – Zahanaua Gastronomică",
+        description: "Γεύμα με προσεγμένη ρουμανική κουζίνα και παραδοσιακές συνταγές. Διεύθυνση: Bulevardul Aviatorilor 40, Sector 1, București.",
+        photo: OTHER_PHOTOS.zexe,
         typeLabel: "ΓΕΥΜΑ",
         disableNavigation: true
       },
       {
-        id: "sat-micoteca-da",
+        id: "sat-zexe-da",
         type: "route",
         duration: 60,
         icon: "🚗",
-        title: "Micoteca → DA Residence, Otopeni",
-        description: "Οδήγηση προς 8 Strada 9 Mai, Otopeni. Δωρεάν ιδιωτικό parking στο κατάλυμα.",
+        title: "Zexe → DA Residence, Otopeni",
+        description: "Οδήγηση από το Zexe προς 8 Strada 9 Mai, Otopeni. Δωρεάν ιδιωτικό parking στο κατάλυμα.",
         destination: "DA Residence, 8 Strada 9 Mai, Otopeni, Romania",
         mode: "driving",
         photo: GOOGLE_MAPS_PHOTO,
-        origin: "Micoteca, Intrarea Arcul de Triumf / Aleea Michael Jackson 1, București"
+        origin: "Zexe, Bulevardul Aviatorilor 40, 011863 București, Romania"
       }
     ]
   },
