@@ -697,7 +697,7 @@ const saturdayBlocks = [
     id: "sat-day-v2",
     title: "Μπλοκ ημέρας · Brașov → Zărnești → Bucharest → Otopeni",
     startLabel: "🏨 ΦΕΥΓΟΥΜΕ ΑΠΟ ΤΟ HERITAGE — START",
-    plannedStart: "2026-11-07T08:30:00+02:00",
+    plannedStart: "2026-11-07T07:45:00+02:00",
     startHint: "START όταν έχουμε κάνει checkout, οι βαλίτσες είναι στο αυτοκίνητο και ξεκινάμε.",
     activities: [
       {
@@ -706,7 +706,7 @@ const saturdayBlocks = [
         duration: 75,
         icon: "🚗",
         title: "Heritage Loft 1735 → Libearty Bear Sanctuary",
-        description: "Οδήγηση Brașov → Zărnești, parking και περιθώριο άφιξης/check-in για το Classic Tour των 09:45.",
+        description: "Οδήγηση Brașov → Zărnești με στόχο άφιξη περίπου 09:00, ώστε να υπάρχει χρόνος για parking, check-in και έκδοση εισιτηρίου πριν από το Classic Tour των 09:30.",
         origin: "Heritage Loft 1735, Strada Gheorghe Barițiu 26, Brașov, Romania",
         destination: "AMP Libearty Bear Sanctuary, Zărnești, Brașov County, Romania",
         mode: "driving",
@@ -714,11 +714,14 @@ const saturdayBlocks = [
       },
       {
         id: "sat-libearty",
-        type: "action",
-        duration: 90,
+        type: "fixed",
+        duration: 75,
         icon: "🐻",
         title: "Libearty Bear Sanctuary (Καταφύγιο αρκούδων)",
-        description: "Καταφύγιο κοντά στο Zărnești που φιλοξενεί διασωθείσες καφέ αρκούδες σε μεγάλες δασωμένες εκτάσεις, με επισκέψεις μόνο μέσω οργανωμένων ξεναγήσεων.",
+        description: "Classic Tour στις 09:30. Άφιξη νωρίτερα για parking, check-in και παραλαβή/έκδοση των απαραίτητων εισιτηρίων.",
+        fixedStart: "2026-11-07T09:30:00+02:00",
+        fixedLabel: "ΣΤΑΘΕΡΟ · 09:30",
+        timeLabel: "09:30–10:45",
         photo: OTHER_PHOTOS.libearty
       },
       {
