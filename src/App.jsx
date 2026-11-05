@@ -41,7 +41,7 @@ const thursdayBlocks = [
         icon: '🚗',
         title: 'Green Motion → Interparking Piața Universității',
         description: 'Οδήγηση κατευθείαν για το Parking.',
-        destination: 'Interparking Piata Universitatii Bucharest',
+        destination: 'University Underground Parking - Ion Ghica Entrance, Strada Toma Caragiu 1, 030042 București, Romania',
         mode: 'driving',
         photo: {
           thumb: PARKING_THUMB,
@@ -252,7 +252,7 @@ const thursdayBlocks = [
         title: "CHANTTAL Luxury - UNIVERSITY → Interparking Piața Universității",
         description: "Με τα πόδια προς το Interparking Piața Universității για να πάρουμε το αυτοκίνητο.",
         origin: "CHANTTAL Luxury - UNIVERSITY, Strada Academiei 4, București, Romania",
-        destination: "Interparking Piața Universității, Strada Toma Caragiu 1, București, Romania",
+        destination: "University Underground Parking - Ion Ghica Entrance, Strada Toma Caragiu 1, 030042 București, Romania",
         mode: "walking",
         photo: GOOGLE_MAPS_PHOTO
       },
@@ -293,7 +293,7 @@ const thursdayBlocks = [
         icon: "🅿️",
         title: "Γήπεδο → Interparking",
         description: "Μετά τον αγώνα οδηγούμε από το Stadionul Rapid-Giulești στο Interparking Piața Universității και παρκάρουμε.",
-        destination: "Interparking Piata Universitatii Bucharest",
+        destination: "University Underground Parking - Ion Ghica Entrance, Strada Toma Caragiu 1, 030042 București, Romania",
         mode: "driving",
         photo: {
           thumb: PARKING_THUMB,
@@ -459,7 +459,7 @@ const fridayBlocks = [
         title: "CHANTTAL Luxury - UNIVERSITY → Interparking Piața Universității",
         description: "Με τα πόδια προς το Interparking Piața Universității για να πάρουμε το αυτοκίνητο.",
         origin: "CHANTTAL Luxury - UNIVERSITY, Strada Academiei 4, București, Romania",
-        destination: "Interparking Piața Universității, Strada Toma Caragiu 1, București, Romania",
+        destination: "University Underground Parking - Ion Ghica Entrance, Strada Toma Caragiu 1, 030042 București, Romania",
         mode: "walking",
         photo: GOOGLE_MAPS_PHOTO
       },
@@ -470,7 +470,7 @@ const fridayBlocks = [
         icon: "🚗",
         title: "Interparking Piața Universității → Bran Castle",
         description: "Οδήγηση από το Βουκουρέστι προς το Bran Castle.",
-        origin: "Interparking Piața Universității, Strada Toma Caragiu 1, București, Romania",
+        origin: "University Underground Parking - Ion Ghica Entrance, Strada Toma Caragiu 1, 030042 București, Romania",
         destination: "Bran Castle, Strada General Traian Moșoiu 24, 507025 Bran, Romania",
         mode: "driving",
         photo: GOOGLE_MAPS_PHOTO
@@ -776,7 +776,7 @@ const saturdayBlocks = [
         title: "DA Residence → Interparking Piața Universității",
         description: "Οδήγηση από το DA Residence προς το Interparking Piața Universității.",
         origin: "DA Residence, 8 Strada 9 Mai, Otopeni, Romania",
-        destination: "Interparking Piața Universității, Strada Toma Caragiu 1, București, Romania",
+        destination: "University Underground Parking - Ion Ghica Entrance, Strada Toma Caragiu 1, 030042 București, Romania",
         mode: "driving",
         photo: GOOGLE_MAPS_PHOTO
       },
@@ -787,7 +787,7 @@ const saturdayBlocks = [
         icon: "🚶",
         title: "Interparking Piața Universității → Macca-Villacrosse Passage",
         description: "Με τα πόδια προς το Macca-Villacrosse Passage.",
-        origin: "Interparking Piața Universității, Strada Toma Caragiu 1, București, Romania",
+        origin: "University Underground Parking - Ion Ghica Entrance, Strada Toma Caragiu 1, 030042 București, Romania",
         destination: "Pasajul Macca-Vilacrosse, București, Romania",
         mode: "walking",
         photo: GOOGLE_MAPS_PHOTO
@@ -817,7 +817,7 @@ const saturdayBlocks = [
         title: "Macca-Villacrosse Passage → Interparking Piața Universității",
         description: "Με τα πόδια πίσω στο Interparking Piața Universității.",
         origin: "Pasajul Macca-Vilacrosse, București, Romania",
-        destination: "Interparking Piața Universității, Strada Toma Caragiu 1, București, Romania",
+        destination: "University Underground Parking - Ion Ghica Entrance, Strada Toma Caragiu 1, 030042 București, Romania",
         mode: "walking",
         photo: GOOGLE_MAPS_PHOTO
       },
@@ -828,7 +828,7 @@ const saturdayBlocks = [
         icon: "🚗",
         title: "Interparking Piața Universității → DA Residence",
         description: "Οδήγηση πίσω στο DA Residence, Otopeni.",
-        origin: "Interparking Piața Universității, Strada Toma Caragiu 1, București, Romania",
+        origin: "University Underground Parking - Ion Ghica Entrance, Strada Toma Caragiu 1, 030042 București, Romania",
         destination: "DA Residence, 8 Strada 9 Mai, Otopeni, Romania",
         mode: "driving",
         photo: GOOGLE_MAPS_PHOTO
